@@ -310,8 +310,12 @@ module: ietf-flexible-encapsulation
         </figure>
       </section>
       <section title="L3 Interface VLAN YANG Module">
-       <t>This YANG module augments the encapsultion container defined in <xref
-       target="I-D.ietf-netmod-intf-ext-yang">Interface Extensions YANG</xref>.</t>
+       <t>This YANG module augments the 'encapsulation' container
+       defined in <xref
+       target="I-D.ietf-netmod-intf-ext-yang">ietf-if-extensions.yang</xref>.
+       It also contains references to <xref target="RFC8343"></xref>,
+       <xref target="RFC7224"></xref>, and <xref
+       target="IEEE802.1Qcp-2018"></xref>.</t>
        <figure>
          <artwork>
                     <![CDATA[
@@ -325,18 +329,27 @@ module ietf-if-l3-vlan {
 
   import ietf-interfaces {
     prefix if;
+    reference
+      "RFC 8343: A YANG Data Model For Interface Management";
   }
 
   import iana-if-type {
     prefix ianaift;
+    reference "RFC 7224: IANA Interface Type YANG Module";
   }
 
   import ieee802-dot1q-types {
     prefix dot1q-types;
+    reference
+      "IEEE Std 802.1Qcp-2018: IEEE Standard for Local and
+       metropolitan area networks -- Bridges and Bridged
+       Networks -- Amendment 30: YANG Data Model";
   }
 
   import ietf-if-extensions {
     prefix if-ext;
+    reference
+      "RFC XXXX: Common Interface Extension YANG Data Models";
   }
 
   organization
@@ -474,11 +487,13 @@ module ietf-if-l3-vlan {
         </figure>
       </section>
       <section title="Flexible Encapsulation YANG Module">
-        <t>This YANG module augments the encapsultion container defined in <xref
-        target="I-D.ietf-netmod-intf-ext-yang">Interface Extensions
-        YANG</xref>. </t>
-	<t> This YANG module also augments the interface container defined in
-	<xref target="RFC8343"/>.</t>
+       <t>This YANG module augments the 'encapsulation' container
+       defined in <xref
+       target="I-D.ietf-netmod-intf-ext-yang">ietf-if-extensions.yang</xref>.
+       This YANG module also augments the 'interface' list entry
+       defined in <xref target="RFC8343"/>.  It also contains
+       references to <xref target="RFC7224"></xref>, and <xref
+       target="IEEE802.1Qcp-2018"></xref>.</t>
         <figure>
           <artwork>
                     <![CDATA[
@@ -492,18 +507,27 @@ module ietf-flexible-encapsulation {
 
   import ietf-interfaces {
     prefix if;
+    reference
+      "RFC 8343: A YANG Data Model For Interface Management";
   }
 
   import iana-if-type {
     prefix ianaift;
-  }
-
-  import ietf-if-extensions {
-    prefix if-ext;
+    reference "RFC 7224: IANA Interface Type YANG Module";
   }
 
   import ieee802-dot1q-types {
     prefix dot1q-types;
+    reference
+      "IEEE Std 802.1Qcp-2018: IEEE Standard for Local and
+       metropolitan area networks -- Bridges and Bridged Networks --
+       Amendment 30: YANG Data Model";
+  }
+
+  import ietf-if-extensions {
+    prefix if-ext;
+    reference
+      "RFC XXXX: Common Interface Extension YANG Data Models";
   }
 
   organization
@@ -1325,6 +1349,19 @@ module ietf-flexible-encapsulation {
       &RFC7224;
             <?rfc include="reference.I-D.ietf-netmod-intf-ext-yang.xml"?>
 
+            <reference anchor="IEEE802.1Qcp-2018">
+                <front>
+                    <title>IEEE Std 802.1Qcp-2018: IEEE Standard for
+                    Local and metropolitan area networks -- Bridges
+                    and Bridged Networks -- Amendment 30: YANG Data
+                    Model</title>
+                    <author initials="M" surname="Holness">
+                        <organization>IEEE 802.1 WG</organization>
+                    </author>
+                    <date year="2018" />
+                </front>
+            </reference>
+
         </references>
         <references title="Informative References">
             <!-- Here we use entities that we defined at the beginning. -->
@@ -1341,15 +1378,6 @@ module ietf-flexible-encapsulation {
             <?rfc include="reference.I-D.ietf-bess-l2vpn-yang.xml"?>
 
 
-            <reference anchor="dot1Qcp">
-                <front>
-                    <title>IEEE 802.1Qcp-2018 Bridges and Bridged Networks - Amendment: YANG Data Model</title>
-                    <author initials="M" surname="Holness">
-                        <organization>IEEE 802.1 WG</organization>
-                    </author>
-                    <date year="2018" />
-                </front>
-            </reference>
 
             <!--&I-D.narten-iana-considerations-rfc2434bis;-->
 

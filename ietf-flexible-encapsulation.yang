@@ -7,18 +7,27 @@ module ietf-flexible-encapsulation {
 
   import ietf-interfaces {
     prefix if;
+    reference
+      "RFC 8343: A YANG Data Model For Interface Management";
   }
 
   import iana-if-type {
     prefix ianaift;
-  }
-
-  import ietf-if-extensions {
-    prefix if-ext;
+    reference "RFC 7224: IANA Interface Type YANG Module";
   }
 
   import ieee802-dot1q-types {
     prefix dot1q-types;
+    reference
+      "IEEE Std 802.1Qcp-2018: IEEE Standard for Local and
+       metropolitan area networks -- Bridges and Bridged Networks --
+       Amendment 30: YANG Data Model";
+  }
+
+  import ietf-if-extensions {
+    prefix if-ext;
+    reference
+      "RFC XXXX: Common Interface Extension YANG Data Models";
   }
 
   organization
