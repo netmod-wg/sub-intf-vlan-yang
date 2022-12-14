@@ -52,22 +52,10 @@
         <email>rwilton@cisco.com</email>
       </address>
     </author>
-    <author fullname="David Ball" initials="D" surname="Ball">
-      <organization>Cisco Systems</organization>
+    <author fullname="Scott Mansfield" initials="S" role="editor" surname="Mansfield">
+      <organization>Ericsson</organization>
       <address>
-        <email>daviball@cisco.com</email>
-      </address>
-    </author>
-    <author fullname="Tapraj Singh" initials="T" surname="Singh">
-      <organization>Cisco Systems</organization>
-      <address>
-        <email>tapsingh@cisco.com</email>
-      </address>
-    </author>
-    <author fullname="Selvakumar Sivaraj" initials="S" surname="Sivaraj">
-      <organization>Juniper Networks</organization>
-      <address>
-        <email>ssivaraj@juniper.net</email>
+        <email>scott.mansfield@ericsson.com</email>
       </address>
     </author>
     <!-- uri and facsimile elements may also be added -->
@@ -315,7 +303,7 @@ module: ietf-if-flexible-encapsulation
        defined in <xref target="I-D.ietf-netmod-intf-ext-yang" format="default">ietf-if-extensions.yang</xref>.
        It also contains references to <xref target="RFC8343" format="default"/>,
        <xref target="RFC7224" format="default"/>, and <xref target="IEEE802.1Qcp-2018" format="default"/>.</t>
-      <sourcecode name="ietf-if-vlan-encapsulation@2020-07-13.yang" type="" markers="true"><![CDATA[
+      <sourcecode name="ietf-if-vlan-encapsulation@2022-12-14.yang" type="" markers="true"><![CDATA[
 module ietf-if-vlan-encapsulation {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-if-vlan-encapsulation";
@@ -382,7 +370,7 @@ module ietf-if-vlan-encapsulation {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2020-07-13 {
+  revision 2022-12-14 {
     description
       "Latest draft revision";
     reference
@@ -480,7 +468,7 @@ module ietf-if-vlan-encapsulation {
        This YANG module also augments the 'interface' list entry
        defined in <xref target="RFC8343" format="default"/>.  It also contains
        references to <xref target="RFC7224" format="default"/>, and <xref target="IEEE802.1Qcp-2018" format="default"/>.</t>
-      <sourcecode name="ietf-if-flexible-encapsulation@2020-07-13.yang" type="" markers="true"><![CDATA[
+      <sourcecode name="ietf-if-flexible-encapsulation@2022-12-14.yang" type="" markers="true"><![CDATA[
 module ietf-if-flexible-encapsulation {
   yang-version 1.1;
   namespace
@@ -548,7 +536,7 @@ module ietf-if-flexible-encapsulation {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2020-07-13 {
+  revision 2022-12-14 {
     description
       "Latest draft revision";
     reference
