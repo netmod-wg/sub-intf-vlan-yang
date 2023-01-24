@@ -86,7 +86,7 @@
         sub-interfaces (e.g. L2VPN attachment circuits) that can interoperate
         with IETF based forwarding protocols; such as IP and L3VPN services; or
         L2VPN services like VPWS, VPLS, and EVPN.  The sub-interfaces also
-        interoperate with VLAN tagged traffic orginating from an IEEE 802.1Q
+        interoperate with VLAN tagged traffic orignating from an IEEE 802.1Q
         compliant bridge.</t>
       <t>The model differs from an IEEE 802.1Q bridge model in that the
         configuration is interface/sub-interface based as opposed to being based
@@ -215,7 +215,7 @@ module: ietf-if-vlan-encapsulation
         (such as E-Tree).</t>
       <t>The model also allows a flexible encapsulation and rewrite to be
         configured directly on an Ethernet or LAG interface without configuring
-        seperate child sub-interfaces.  Ingress frames that do not match the
+        separate child sub-interfaces.  Ingress frames that do not match the
         encapsulation are dropped.  Egress frames MUST conform to the
         encapsulation. </t>
       <t>The final aim for the model design is for it to be cleanly extensible
@@ -1064,7 +1064,7 @@ module ietf-if-flexible-encapsulation {
             separate physical interface configured to match traffic with a
             C-VLAN of 50, with the tag removed before traffic is given to any
             service.  Sub-interface 'eth1.0' is not currently bound to any
-            service and hence traffic classifed to that sub-interface is
+            service and hence traffic classified to that sub-interface is
             dropped.</t>
         <artwork name="" type="" align="left" alt=""><![CDATA[
                         
@@ -1161,6 +1161,7 @@ module ietf-if-flexible-encapsulation {
         </pw>
       </endpoint>
       <vsi-root>
+      <!-- Does not Validate -->
       </vsi-root>
     </network-instance>
   </network-instances>
@@ -1168,10 +1169,8 @@ module ietf-if-flexible-encapsulation {
       xmlns="urn:ietf:params:xml:ns:yang:ietf-pseudowires">
     <pseudowire>
       <name>pw1</name>
-      <configured-pw>
         <peer-ip>2001:db8::50></peer-ip>
         <pw-id>100</pw-id>
-      </configured-pw>
     </pseudowire>
   </pseudowires>
 </config>
@@ -1211,7 +1210,7 @@ module ietf-if-flexible-encapsulation {
         <ul spacing="normal">
           <li>Incorporate feedback from IEEE 802.1 WG, John Messenger in
               particular.</li>
-          <li>Adding must contraints to ensure outer tags are always matched
+          <li>Adding must constraints to ensure outer tags are always matched
 	      to C-VLAN and S-VLAN tags.</li>
           <li>Fixed bug where second tag could be matched without outer tag,
 	      and where tags must not be specified.</li>
@@ -1274,7 +1273,7 @@ module ietf-if-flexible-encapsulation {
       <name>IANA Considerations</name>
       <section anchor="yang-module-registrations" numbered="true" toc="default">
         <name>YANG Module Registrations</name>
-        <t>The following YANG modules are requested to be registred in the IANA
+        <t>The following YANG modules are requested to be registered in the IANA
           "YANG Module Names" <xref target="RFC6020" format="default"/> registry:</t>
         <t>The ietf-if-vlan-encapsulation module:</t>
         <ul empty="true" spacing="normal">
