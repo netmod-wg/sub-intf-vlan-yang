@@ -5,8 +5,8 @@
 Internet Engineering Task Force                         R.G. Wilton, Ed.
 Internet-Draft                                             Cisco Systems
 Intended status: Standards Track                       S. Mansfield, Ed.
-Expires: 17 June 2023                                           Ericsson
-                                                        14 December 2022
+Expires: 29 July 2023                                           Ericsson
+                                                         25 January 2023
 
 
                   Sub-interface VLAN YANG Data Models
@@ -21,7 +21,7 @@ Abstract
    Layer 2 sub-interfaces (e.g.  L2VPN attachment circuits) that can
    interoperate with IETF based forwarding protocols; such as IP and
    L3VPN services; or L2VPN services like VPWS, VPLS, and EVPN.  The
-   sub-interfaces also interoperate with VLAN tagged traffic orginating
+   sub-interfaces also interoperate with VLAN tagged traffic orignating
    from an IEEE 802.1Q compliant bridge.
 
    The model differs from an IEEE 802.1Q bridge model in that the
@@ -46,21 +46,21 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 June 2023.
+   This Internet-Draft will expire on 29 July 2023.
 
 
 
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                  [Page 1]
+Wilton & Mansfield        Expires 29 July 2023                  [Page 1]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
 Copyright Notice
 
-   Copyright (c) 2022 IETF Trust and the persons identified as the
+   Copyright (c) 2023 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                  [Page 2]
+Wilton & Mansfield        Expires 29 July 2023                  [Page 2]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
    Appendix A.  Comparison with the IEEE 802.1Q Configuration
@@ -165,9 +165,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                  [Page 3]
+Wilton & Mansfield        Expires 29 July 2023                  [Page 3]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
 1.1.  Terminology
@@ -221,9 +221,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                  [Page 4]
+Wilton & Mansfield        Expires 29 July 2023                  [Page 4]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
    module: ietf-if-vlan-encapsulation
@@ -270,16 +270,16 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
    The model also allows a flexible encapsulation and rewrite to be
    configured directly on an Ethernet or LAG interface without
-   configuring seperate child sub-interfaces.  Ingress frames that do
+   configuring separate child sub-interfaces.  Ingress frames that do
    not match the encapsulation are dropped.  Egress frames MUST conform
    to the encapsulation.
 
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                  [Page 5]
+Wilton & Mansfield        Expires 29 July 2023                  [Page 5]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
    The final aim for the model design is for it to be cleanly extensible
@@ -333,9 +333,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                  [Page 6]
+Wilton & Mansfield        Expires 29 July 2023                  [Page 6]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
              |     |              +--rw tag-type    dot1q-tag-type
@@ -389,9 +389,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                  [Page 7]
+Wilton & Mansfield        Expires 29 July 2023                  [Page 7]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
      }
@@ -445,9 +445,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                  [Page 8]
+Wilton & Mansfield        Expires 29 July 2023                  [Page 8]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
         (https://www.rfc-editor.org/info/rfcXXXX); see the RFC itself
@@ -501,9 +501,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                  [Page 9]
+Wilton & Mansfield        Expires 29 July 2023                  [Page 9]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
               a forwarding instance, otherwise they are dropped.";
@@ -557,9 +557,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 10]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 10]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
      }
@@ -613,9 +613,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 11]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 11]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
        "WG Web:   <http://tools.ietf.org/wg/netmod/>
@@ -669,9 +669,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 12]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 12]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
           rewrite operation and egress rewrite operation.";
@@ -725,9 +725,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 13]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 13]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
            leaf untagged {
@@ -781,9 +781,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 14]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 14]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
                uses "dot1q-types:"
@@ -837,9 +837,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 15]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 15]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
           symmetrically, or independently in the ingress and/or egress
@@ -893,9 +893,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 16]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 16]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
              description
@@ -949,9 +949,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 17]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 17]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
              derived-from-or-self(../if:type, 'ianaift:l2vlan') or
@@ -1005,9 +1005,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 18]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 18]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
            }
@@ -1061,9 +1061,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 19]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 19]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
                    description
@@ -1117,9 +1117,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 20]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 20]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
                uses dot1q-types:dot1q-tag-classifier-grouping;
@@ -1173,9 +1173,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 21]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 21]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
    'eth0.1' is configured to match traffic with two VLAN tags: an outer
@@ -1229,9 +1229,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 22]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 22]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
          <if-ext:encapsulation>
@@ -1267,7 +1267,7 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
    physical interface configured to match traffic with a C-VLAN of 50,
    with the tag removed before traffic is given to any service.  Sub-
    interface 'eth1.0' is not currently bound to any service and hence
-   traffic classifed to that sub-interface is dropped.
+   traffic classified to that sub-interface is dropped.
 
 
    <?xml version="1.0" encoding="utf-8"?>
@@ -1285,9 +1285,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 23]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 23]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
          <name>eth0.3</name>
@@ -1341,9 +1341,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 24]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 24]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
                <symmetrical>
@@ -1379,6 +1379,7 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
            </pw>
          </endpoint>
          <vsi-root>
+         <!-- Does not Validate -->
          </vsi-root>
        </network-instance>
      </network-instances>
@@ -1386,10 +1387,8 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
          xmlns="urn:ietf:params:xml:ns:yang:ietf-pseudowires">
        <pseudowire>
          <name>pw1</name>
-         <configured-pw>
            <peer-ip>2001:db8::50></peer-ip>
            <pw-id>100</pw-id>
-         </configured-pw>
        </pseudowire>
      </pseudowires>
    </config>
@@ -1397,9 +1396,10 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 25]
+
+Wilton & Mansfield        Expires 29 July 2023                 [Page 25]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
 8.  Acknowledgements
@@ -1431,7 +1431,7 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
    *  Incorporate feedback from IEEE 802.1 WG, John Messenger in
       particular.
 
-   *  Adding must contraints to ensure outer tags are always matched to
+   *  Adding must constraints to ensure outer tags are always matched to
       C-VLAN and S-VLAN tags.
 
    *  Fixed bug where second tag could be matched without outer tag, and
@@ -1453,9 +1453,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 26]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 26]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
 9.7.  WG version -01
@@ -1493,7 +1493,7 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 10.1.  YANG Module Registrations
 
-   The following YANG modules are requested to be registred in the IANA
+   The following YANG modules are requested to be registered in the IANA
    "YANG Module Names" [RFC6020] registry:
 
    The ietf-if-vlan-encapsulation module:
@@ -1509,9 +1509,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 27]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 27]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
    The ietf-if-flexible-encapsulation module:
@@ -1565,9 +1565,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 28]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 28]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
 11.1.  ietf-if-vlan-encapsulation.yang
@@ -1621,9 +1621,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 29]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 29]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
    There are also many modes in the flexible encapsulation YANG module
@@ -1677,9 +1677,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 30]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 30]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
    Nodes in the flexible-encapsulation YANG module that are concerned
@@ -1733,9 +1733,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 31]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 31]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
@@ -1789,9 +1789,9 @@ Internet-Draft           Sub-interface VLAN YANG           December 2022
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 32]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 32]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
    [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
@@ -1845,9 +1845,9 @@ A.1.  Sub-interface based configuration model overview
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 33]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 33]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
    *  In the sub-interface based configuration model, the classification
@@ -1901,9 +1901,9 @@ A.3.  Possible Overlap Between the Two Models
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 34]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 34]
 
-Internet-Draft           Sub-interface VLAN YANG           December 2022
+Internet-Draft           Sub-interface VLAN YANG            January 2023
 
 
    The sub-interface model can also be used for configuring equivalent
@@ -1957,4 +1957,4 @@ Authors' Addresses
 
 
 
-Wilton & Mansfield        Expires 17 June 2023                 [Page 35]
+Wilton & Mansfield        Expires 29 July 2023                 [Page 35]
