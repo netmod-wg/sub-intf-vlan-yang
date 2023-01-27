@@ -302,7 +302,7 @@ module: ietf-if-flexible-encapsulation
        defined in <xref target="I-D.ietf-netmod-intf-ext-yang" format="default">ietf-if-extensions.yang</xref>.
        It also contains references to <xref target="RFC8343" format="default"/>,
        <xref target="RFC7224" format="default"/>, and <xref target="IEEE_802.1Q_2022" format="default"/>.</t>
-      <sourcecode name="ietf-if-vlan-encapsulation@2022-12-14.yang" type="" markers="true"><![CDATA[
+      <sourcecode name="ietf-if-vlan-encapsulation@2023-01-26.yang" type="" markers="true"><![CDATA[
 module ietf-if-vlan-encapsulation {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-if-vlan-encapsulation";
@@ -322,6 +322,7 @@ module ietf-if-vlan-encapsulation {
 
   import ieee802-dot1q-types {
     prefix dot1q-types;
+    revision-date 2022-01-19;
     reference
       "IEEE Std 802.1Q-2022: IEEE Standard for Local and
        metropolitan area networks -- Bridges and Bridged Networks";
@@ -368,7 +369,7 @@ module ietf-if-vlan-encapsulation {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2022-12-14 {
+  revision 2023-01-26 {
     description
       "Latest draft revision";
     reference
@@ -466,7 +467,7 @@ module ietf-if-vlan-encapsulation {
        This YANG module also augments the 'interface' list entry
        defined in <xref target="RFC8343" format="default"/>.  It also contains
        references to <xref target="RFC7224" format="default"/>, and <xref target="IEEE_802.1Q_2022" format="default"/>.</t>
-      <sourcecode name="ietf-if-flexible-encapsulation@2022-12-14.yang" type="" markers="true"><![CDATA[
+      <sourcecode name="ietf-if-flexible-encapsulation@2023-01-26.yang" type="" markers="true"><![CDATA[
 module ietf-if-flexible-encapsulation {
   yang-version 1.1;
   namespace
@@ -487,6 +488,7 @@ module ietf-if-flexible-encapsulation {
 
   import ieee802-dot1q-types {
     prefix dot1q-types;
+    revision-date 2022-01-19;
     reference
       "IEEE Std 802.1Q-2022: IEEE Standard for Local and
        metropolitan area networks -- Bridges and Bridged Networks";
@@ -518,7 +520,7 @@ module ietf-if-flexible-encapsulation {
 
      Redistribution and use in source and binary forms, with or
      without modification, is permitted pursuant to, and subject to
-     the license terms contained in, the Simplified BSD License set
+     the license terms contained in, the Revised BSD License set
      forth in Section 4.c of the IETF Trust's Legal Provisions
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
@@ -533,7 +535,7 @@ module ietf-if-flexible-encapsulation {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2022-12-14 {
+  revision 2023-01-26 {
     description
       "Latest draft revision";
     reference
