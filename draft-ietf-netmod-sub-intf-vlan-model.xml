@@ -32,7 +32,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" consensus="true" docName="draft-ietf-netmod-sub-intf-vlan-model-08" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" consensus="true" docName="draft-ietf-netmod-sub-intf-vlan-model-13" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
   <!-- xml2rfc v2v3 conversion 3.15.0 -->
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
@@ -43,7 +43,7 @@
     <!-- The abbreviated title is used in the page header - it is only necessary if the 
          full title is longer than 39 characters -->
         <title abbrev="Sub-interface VLAN YANG">Sub-interface VLAN YANG Data Models</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-netmod-sub-intf-vlan-model-08"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-netmod-sub-intf-vlan-model-13"/>
     <!-- add 'role="editor"' below for the editors if appropriate -->
         <!-- Another author who claims to be an editor -->
       <author fullname="Robert Wilton" initials="R.G." role="editor" surname="Wilton">
@@ -59,7 +59,7 @@
       </address>
     </author>
     <!-- uri and facsimile elements may also be added -->
-      <date year="2023"/>
+      <date year="2025"/>
     <!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
          in the current day for you. If only the current year is specified, xml2rfc will fill 
 	 in the current day and month for you. If the year is not the current one, it is 
@@ -105,8 +105,8 @@
         can have interface based feature and service configuration applied to
         them.</t>
       <t>The purpose of these models is to allow IETF defined forwarding
-        protocols, for example, IPv6 <xref target="RFC2460" format="default"/>, Ethernet Pseudo Wires
-        <xref target="RFC4448" format="default"/> and VPLS <xref target="RFC4761" format="default"/> <xref target="RFC4762" format="default"/>, when configured via appropriate YANG data models <xref target="RFC8344" format="default"/> <xref target="I-D.ietf-bess-l2vpn-yang" format="default"/>, to
+        protocols, for example, IPv6 <xref target="RFC8200" format="default"/>, Ethernet Pseudo Wires
+        <xref target="RFC4448" format="default"/> and VPLS <xref target="RFC4761" format="default"/> <xref target="RFC4762" format="default"/>, when configured via appropriate YANG data models <xref target="RFC8344" format="default"/>, to
         interoperate with VLAN tagged traffic received from an IEEE 802.1Q
         compliant bridge.</t>
       <t>In the case of layer 2 Ethernet services, the flexible
@@ -132,10 +132,9 @@
         <name>Terminology</name>
         <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
           "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-          "OPTIONAL" in this document are to be interpreted as described in BCP
-          14 <xref target="RFC2119" format="default">RFC 2119</xref> <xref target="RFC8174" format="default">RFC
-          8174</xref> when, and only when, they appear in all capitals, as shown
-          here.</t>
+	  "OPTIONAL" in this document are to be interpreted as described in BCP 14
+          <xref target="RFC2119" format="default"/> <xref target="RFC8174" format="default"/>
+          when, and only when, they appear in all capitals, as shown here.</t>
         <t>The term 'sub-interface' is defined in section 2.6 of <xref target="I-D.ietf-netmod-intf-ext-yang" format="default">Interface Extensions
           YANG</xref>.</t>
       </section>
@@ -144,6 +143,52 @@
         <t>Tree diagrams used in this document follow the notation defined in
 	   <xref target="RFC8340" format="default"/>.</t>
       </section>
+      <section anchor="prefixes-in-data-node-names">
+        <name>Prefixes in Data Node Names</name>
+        <t>In this document, names of data nodes and other data model objects are prefixed using the standard prefix associated with the corresponding YANG imported modules, as shown in <xref target="tab-prefix"/>.</t>
+            <table anchor="tab-prefix">
+	      <name>Prefixes for imported YANG modules</name>
+	      <thead>
+	        <tr>
+	          <th align="left">Prefix</th>
+		  <th align="left">YANG Module</th>
+		  <th align="left">Reference</th>
+		</tr>
+	      </thead>
+	      <tbody>
+	        <tr>
+	          <td align="left">if-vlan</td>
+		  <td align="left">ietf-if-vlan-encapsulation</td>
+		  <td align="left">This document</td>
+	        </tr>
+	        <tr>
+	          <td align="left">if-flex</td>
+		  <td align="left">ietf-if-flexible-encapsulation</td>
+		  <td align="left">This document</td>
+	        </tr>
+	        <tr>
+	          <td align="left">if-ext</td>
+		  <td align="left">ietf-if-extensions</td>
+		  <td align="left"><xref target="I-D.ietf-netmod-intf-ext-yang"/></td>
+	        </tr>
+	        <tr>
+	          <td align="left">if</td>
+		  <td align="left">ietf-interfaces</td>
+		  <td align="left"><xref target="RFC8343"/></td>
+	        </tr>
+	        <tr>
+	          <td align="left">ianaift</td>
+		  <td align="left">iana-if-type</td>
+		  <td align="left"><xref target="RFC7224"/></td>
+	        </tr>
+	        <tr>
+	          <td align="left">dot1q-types</td>
+		  <td align="left">ieee802-dot1q-types</td>
+		  <td align="left"><xref target="IEEE_802.1Q_2022"/></td>
+	        </tr>
+	      </tbody>
+	    </table>
+	</section>
     </section>
     <section numbered="true" toc="default">
       <name>Objectives</name>
@@ -180,10 +225,10 @@ module: ietf-if-vlan-encapsulation
     +--:(dot1q-vlan)
        +--rw dot1q-vlan
           +--rw outer-tag
-          |  +--rw tag-type    dot1q-tag-type
+          |  +--rw tag-type dot1q-tag-type
           |  +--rw vlan-id     vlanid
           +--rw second-tag!
-             +--rw tag-type    dot1q-tag-type
+             +--rw tag-type dot1q-tag-type
              +--rw vlan-id     vlanid
             
           ]]></artwork>
@@ -199,7 +244,7 @@ module: ietf-if-vlan-encapsulation
         frame header before the frame is handed off to the appropriate
         forwarding code for further handling.  The forwarding instance, e.g.,
         L2VPN, VPLS, etc., is configured using a separate YANG configuration
-        model defined elsewhere, e.g., <xref target="I-D.ietf-bess-l2vpn-yang" format="default"/>.</t>
+        model defined elsewhere.</t>
       <t>The model supports a common core set of layer 2 header matches based
         on the 802.1Q tag type and VLAN Ids contained within the header up to a
         tag stack depth of two tags.</t>
@@ -243,14 +288,14 @@ module: ietf-if-flexible-encapsulation
           |     |  +--rw untagged?                empty
           |     +--:(dot1q-priority-tagged)
           |     |  +--rw dot1q-priority-tagged
-          |     |     +--rw tag-type    dot1q-types:dot1q-tag-type
+          |     |     +--rw tag-type dot1q-types:dot1q-tag-type
           |     +--:(dot1q-vlan-tagged)
           |        +--rw dot1q-vlan-tagged
           |           +--rw outer-tag
-          |           |  +--rw tag-type    dot1q-tag-type
+          |           |  +--rw tag-type dot1q-tag-type
           |           |  +--rw vlan-id     union
           |           +--rw second-tag!
-          |           |  +--rw tag-type    dot1q-tag-type
+          |           |  +--rw tag-type dot1q-tag-type
           |           |  +--rw vlan-id     union
           |           +--rw match-exact-tags?   empty
           +--rw rewrite {flexible-rewrites}?
@@ -261,10 +306,10 @@ module: ietf-if-flexible-encapsulation
           |     |        +--rw pop-tags?    uint8
           |     |        +--rw push-tags!
           |     |           +--rw outer-tag
-          |     |           |  +--rw tag-type    dot1q-tag-type
+          |     |           |  +--rw tag-type dot1q-tag-type
           |     |           |  +--rw vlan-id     vlanid
           |     |           +--rw second-tag!
-          |     |              +--rw tag-type    dot1q-tag-type
+          |     |              +--rw tag-type dot1q-tag-type
           |     |              +--rw vlan-id     vlanid
           |     +--:(asymmetrical) {asymmetric-rewrites}?
           |        +--rw ingress
@@ -272,27 +317,27 @@ module: ietf-if-flexible-encapsulation
           |        |     +--rw pop-tags?    uint8
           |        |     +--rw push-tags!
           |        |        +--rw outer-tag
-          |        |        |  +--rw tag-type    dot1q-tag-type
+          |        |        |  +--rw tag-type dot1q-tag-type
           |        |        |  +--rw vlan-id     vlanid
           |        |        +--rw second-tag!
-          |        |           +--rw tag-type    dot1q-tag-type
+          |        |           +--rw tag-type dot1q-tag-type
           |        |           +--rw vlan-id     vlanid
           |        +--rw egress
           |           +--rw dot1q-tag-rewrite {dot1q-tag-rewrites}?
           |              +--rw pop-tags?    uint8
           |              +--rw push-tags!
           |                 +--rw outer-tag
-          |                 |  +--rw tag-type    dot1q-tag-type
+          |                 |  +--rw tag-type dot1q-tag-type
           |                 |  +--rw vlan-id     vlanid
           |                 +--rw second-tag!
-          |                    +--rw tag-type    dot1q-tag-type
+          |                    +--rw tag-type dot1q-tag-type
           |                    +--rw vlan-id     vlanid
           +--rw local-traffic-default-encaps!
              +--rw outer-tag
-             |  +--rw tag-type    dot1q-tag-type
+             |  +--rw tag-type dot1q-tag-type
              |  +--rw vlan-id     vlanid
              +--rw second-tag!
-                +--rw tag-type    dot1q-tag-type
+                +--rw tag-type dot1q-tag-type
                 +--rw vlan-id     vlanid
             
           ]]></artwork>
@@ -302,8 +347,8 @@ module: ietf-if-flexible-encapsulation
       <t>This YANG module augments the 'encapsulation' container
        defined in <xref target="I-D.ietf-netmod-intf-ext-yang" format="default">ietf-if-extensions.yang</xref>.
        It also contains references to <xref target="RFC8343" format="default"/>,
-       <xref target="RFC7224" format="default"/>, and <xref target="IEEE802.1Qcp-2018" format="default"/>.</t>
-      <sourcecode name="ietf-if-vlan-encapsulation@2022-12-14.yang" type="" markers="true"><![CDATA[
+       <xref target="RFC7224" format="default"/>, and <xref target="IEEE_802.1Q_2022" format="default"/>.</t>
+      <sourcecode name="ietf-if-vlan-encapsulation@2025-01-29.yang" type="" markers="true"><![CDATA[
 module ietf-if-vlan-encapsulation {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-if-vlan-encapsulation";
@@ -324,9 +369,9 @@ module ietf-if-vlan-encapsulation {
   import ieee802-dot1q-types {
     prefix dot1q-types;
     reference
-      "IEEE Std 802.1Qcp-2018: IEEE Standard for Local and
-       metropolitan area networks -- Bridges and Bridged Networks --
-       Amendment 30: YANG Data Model";
+      "IEEE Std 802.1Q Bridges and Bridged Networks:
+       IEEE Std 802.1Q-2022, IEEE Std 802.1Qcz-2023,
+       IEEE Std 802.1Qcw-2023, IEEE Std 802.1Qcj-2023";
   }
 
   import ietf-if-extensions {
@@ -350,12 +395,12 @@ module ietf-if-vlan-encapsulation {
      VLAN tagged Ethernet traffic by exactly matching the tag type
      and VLAN identifier of one or two 802.1Q VLAN tags in the frame.
 
-     Copyright (c) 2022 IETF Trust and the persons identified as
+     Copyright (c) 2025 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
      without modification, is permitted pursuant to, and subject to
-     the license terms contained in, the Simplified BSD License set
+     the license terms contained in, the Revised BSD License set
      forth in Section 4.c of the IETF Trust's Legal Provisions
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
@@ -370,9 +415,9 @@ module ietf-if-vlan-encapsulation {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2022-12-14 {
+  revision 2025-01-29 {
     description
-      "Latest draft revision";
+      "VLAN encapulations YANG model";
     reference
       "RFC XXXX: Sub-interface VLAN YANG Data Models";
   }
@@ -383,9 +428,7 @@ module ietf-if-vlan-encapsulation {
                                'ianaift:ethernetCsmacd') or
           derived-from-or-self(../if:type,
                                'ianaift:ieee8023adLag') or
-          derived-from-or-self(../if:type, 'ianaift:l2vlan') or
-          derived-from-or-self(../if:type,
-                               'if-ext:ethSubInterface')" {
+          derived-from-or-self(../if:type, 'ianaift:l2vlan')" {
         description
           "Applies only to Ethernet-like interfaces and
            sub-interfaces.";
@@ -467,8 +510,8 @@ module ietf-if-vlan-encapsulation {
        defined in <xref target="I-D.ietf-netmod-intf-ext-yang" format="default">ietf-if-extensions.yang</xref>.
        This YANG module also augments the 'interface' list entry
        defined in <xref target="RFC8343" format="default"/>.  It also contains
-       references to <xref target="RFC7224" format="default"/>, and <xref target="IEEE802.1Qcp-2018" format="default"/>.</t>
-      <sourcecode name="ietf-if-flexible-encapsulation@2022-12-14.yang" type="" markers="true"><![CDATA[
+       references to <xref target="RFC7224" format="default"/>, and <xref target="IEEE_802.1Q_2022" format="default"/>.</t>
+      <sourcecode name="ietf-if-flexible-encapsulation@2025-01-29.yang" type="" markers="true"><![CDATA[
 module ietf-if-flexible-encapsulation {
   yang-version 1.1;
   namespace
@@ -490,9 +533,9 @@ module ietf-if-flexible-encapsulation {
   import ieee802-dot1q-types {
     prefix dot1q-types;
     reference
-      "IEEE Std 802.1Qcp-2018: IEEE Standard for Local and
-       metropolitan area networks -- Bridges and Bridged Networks --
-       Amendment 30: YANG Data Model";
+      "IEEE Std 802.1Q Bridges and Bridged Networks:
+       IEEE Std 802.1Q-2022, IEEE Std 802.1Qcz-2023,
+       IEEE Std 802.1Qcw-2023, IEEE Std 802.1Qcj-2023";
   }
 
   import ietf-if-extensions {
@@ -521,7 +564,7 @@ module ietf-if-flexible-encapsulation {
 
      Redistribution and use in source and binary forms, with or
      without modification, is permitted pursuant to, and subject to
-     the license terms contained in, the Simplified BSD License set
+     the license terms contained in, the Revised BSD License set
      forth in Section 4.c of the IETF Trust's Legal Provisions
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
@@ -536,9 +579,9 @@ module ietf-if-flexible-encapsulation {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2022-12-14 {
+  revision 2025-01-29 {
     description
-      "Latest draft revision";
+      "Interface flexible encapsulations YANG model";
     reference
       "RFC XXXX: Sub-interface VLAN YANG Data Models";
   }
@@ -794,9 +837,7 @@ module ietf-if-flexible-encapsulation {
                                'ianaift:ethernetCsmacd') or
           derived-from-or-self(../if:type,
                                'ianaift:ieee8023adLag') or
-          derived-from-or-self(../if:type, 'ianaift:l2vlan') or
-          derived-from-or-self(../if:type,
-                               'if-ext:ethSubInterface')" {
+          derived-from-or-self(../if:type, 'ianaift:l2vlan')" {
 
         description
           "Applies only to Ethernet-like interfaces and
@@ -978,7 +1019,7 @@ module ietf-if-flexible-encapsulation {
       <name>Examples</name>
       <t>The following sections give examples of configuring a sub-interface
         supporting L3 forwarding, and a sub-interface being used in
-        conjunction with the IETF L2VPN YANG model <xref target="I-D.ietf-bess-l2vpn-yang" format="default"/>.</t>
+        conjunction with an L2VPN.</t>
       <section anchor="example1" numbered="true" toc="default">
         <name>Layer 3 sub-interfaces with IPv6</name>
         <t>This example illustrates two layer sub-interfaces, 'eth0.1' and
@@ -989,76 +1030,85 @@ module ietf-if-flexible-encapsulation {
         <t>'eth0.2' is configured to match traffic with a single S-VLAN tag,
           with VLAN Id 11.</t>
         <artwork name="" type="" align="left" alt=""><![CDATA[
-                        
-<?xml version="1.0" encoding="utf-8"?>
-<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-  <interfaces 
-  xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"
-  xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type"
-  xmlns:dot1q-types="urn:ieee:std:802.1Q:yang:ieee802-dot1q-types"
-  xmlns:if-ext="urn:ietf:params:xml:ns:yang:ietf-if-extensions">
-    <interface>
-      <name>eth0</name>
-      <type>ianaift:ethernetCsmacd</type>
-    </interface>
-    <interface>
-      <name>eth0.1</name>
-      <type>ianaift:l2vlan</type>
-      <if-ext:parent-interface>eth0</if-ext:parent-interface>
-      <if-ext:encapsulation>
-        <dot1q-vlan
-         xmlns=
-            "urn:ietf:params:xml:ns:yang:ietf-if-vlan-encapsulation">
-          <outer-tag>
-            <tag-type>dot1q-types:s-vlan</tag-type>
-            <vlan-id>10</vlan-id>
-          </outer-tag>
-          <second-tag>
-            <tag-type>dot1q-types:c-vlan</tag-type>
-            <vlan-id>20</vlan-id>
-          </second-tag>
-        </dot1q-vlan>
-      </if-ext:encapsulation>
-      <ipv6 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
-        <forwarding>true</forwarding>
-        <address>
-          <ip>2001:db8:10::1</ip>
-          <prefix-length>48</prefix-length>
-        </address>
-      </ipv6>
-    </interface>
-    <interface>
-      <name>eth0.2</name>
-      <type>ianaift:l2vlan</type>
-      <if-ext:parent-interface>eth0</if-ext:parent-interface>
-      <if-ext:encapsulation>
-        <dot1q-vlan
-         xmlns=
-            "urn:ietf:params:xml:ns:yang:ietf-if-vlan-encapsulation">
-          <outer-tag>
-            <tag-type>dot1q-types:s-vlan</tag-type>
-            <vlan-id>11</vlan-id>
-          </outer-tag>
-        </dot1q-vlan>
-      </if-ext:encapsulation>
-      <ipv6 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
-        <forwarding>true</forwarding>
-        <address>
-          <ip>2001:db8:11::1</ip>
-          <prefix-length>48</prefix-length>
-        </address>
-      </ipv6>
-    </interface>
-  </interfaces>
-</config>
-            
+{
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2023-12-15T09:04:00-05:00"
+        }
+      },
+      {
+        "name": "eth0.1",
+        "type": "iana-if-type:l2vlan",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2023-12-15T09:04:00-05:00"
+        },
+        "ietf-if-extensions:encapsulation": {
+          "ietf-if-vlan-encapsulation:dot1q-vlan": {
+            "outer-tag": {
+              "tag-type": "ieee802-dot1q-types:s-vlan",
+              "vlan-id": 10
+            },
+            "second-tag": {
+              "tag-type": "ieee802-dot1q-types:c-vlan",
+              "vlan-id": 20
+            }
+          }
+        },
+        "ietf-if-extensions:parent-interface": "eth0",
+        "ietf-ip:ipv6": {
+          "enabled": true,
+          "forwarding": true,
+          "address": [
+            {
+              "ip": "2001:db8:11::1",
+              "prefix-length": 48
+            }
+          ]
+        }
+      },
+      {
+        "name": "eth0.2",
+        "type": "iana-if-type:l2vlan",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2023-12-15T09:04:00-05:00"
+        },
+        "ietf-if-extensions:encapsulation": {
+          "ietf-if-vlan-encapsulation:dot1q-vlan": {
+            "outer-tag": {
+              "tag-type": "ieee802-dot1q-types:s-vlan",
+              "vlan-id": 11
+            }
+          }
+        },
+        "ietf-if-extensions:parent-interface": "eth0",
+        "ietf-ip:ipv6": {
+          "enabled": true,
+          "forwarding": true,
+          "address": [
+            {
+              "ip": "2001:db8:11::1",
+              "prefix-length": 48
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
               ]]></artwork>
       </section>
       <section anchor="example2" numbered="true" toc="default">
         <name>Layer 2 sub-interfaces with L2VPN</name>
         <t>This example illustrates a layer 2 sub-interface 'eth0.3'
             configured to match traffic with a S-VLAN tag of 10, and C-VLAN tag
-            of 21; and remov the outer tag (S-VLAN 10) before the traffic is
+            of 21; and remove the outer tag (S-VLAN 10) before the traffic is
             passed off to the L2VPN service.</t>
         <t>It also illustrates another sub-interface 'eth1.0' under a
             separate physical interface configured to match traffic with a
@@ -1067,119 +1117,84 @@ module ietf-if-flexible-encapsulation {
             service and hence traffic classified to that sub-interface is
             dropped.</t>
         <artwork name="" type="" align="left" alt=""><![CDATA[
-                        
-<?xml version="1.0" encoding="utf-8"?>
-<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-  <interfaces 
-  xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"
-  xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type"
-  xmlns:dot1q-types="urn:ieee:std:802.1Q:yang:ieee802-dot1q-types"
-  xmlns:if-ext="urn:ietf:params:xml:ns:yang:ietf-if-extensions">
-    <interface>
-      <name>eth0</name>
-      <type>ianaift:ethernetCsmacd</type>
-    </interface>
-    <interface>
-      <name>eth0.3</name>
-      <type>ianaift:l2vlan</type>
-      <if-ext:parent-interface>eth0</if-ext:parent-interface>
-      <if-ext:encapsulation>
-        <flexible xmlns=
-        "urn:ietf:params:xml:ns:yang:ietf-if-flexible-encapsulation">
-          <match>
-            <dot1q-vlan-tagged>
-              <outer-tag>
-                <tag-type>dot1q-types:s-vlan</tag-type>
-                <vlan-id>10</vlan-id>
-              </outer-tag>
-              <second-tag>
-                <tag-type>dot1q-types:c-vlan</tag-type>
-                <vlan-id>21</vlan-id>
-              </second-tag>
-            </dot1q-vlan-tagged>
-          </match>
-          <rewrite>
-            <symmetrical>
-              <dot1q-tag-rewrite>
-                <pop-tags>1</pop-tags>
-              </dot1q-tag-rewrite>
-            </symmetrical>
-          </rewrite>
-        </flexible>
-      </if-ext:encapsulation>
-    </interface>
-    <interface>
-      <name>eth1</name>
-      <type>ianaift:ethernetCsmacd</type>
-    </interface>
-    <interface>
-      <name>eth1.0</name>
-      <type>ianaift:l2vlan</type>
-      <if-ext:parent-interface>eth0</if-ext:parent-interface>
-      <if-ext:encapsulation>
-        <flexible xmlns=
-        "urn:ietf:params:xml:ns:yang:ietf-if-flexible-encapsulation">
-          <match>
-            <dot1q-vlan-tagged>
-              <outer-tag>
-                <tag-type>dot1q-types:c-vlan</tag-type>
-                <vlan-id>50</vlan-id>
-              </outer-tag>
-            </dot1q-vlan-tagged>
-          </match>
-          <rewrite>
-            <symmetrical>
-              <dot1q-tag-rewrite>
-                <pop-tags>1</pop-tags>
-              </dot1q-tag-rewrite>
-            </symmetrical>
-          </rewrite>
-        </flexible>
-      </if-ext:encapsulation>
-    </interface>
-  </interfaces>
-  <network-instances
-      xmlns="urn:ietf:params:xml:ns:yang:ietf-network-instance">
-    <network-instance
-     xmlns:l2vpn="urn:ietf:params:xml:ns:yang:ietf-l2vpn">   
-      <name>p2p-l2-1</name>
-      <description>Point to point L2 service</description>
-      <l2vpn:type>l2vpn:vpws-instance-type</l2vpn:type>
-      <l2vpn:signaling-type>
-        l2vpn:ldp-signaling
-      </l2vpn:signaling-type>
-      <endpoint xmlns="urn:ietf:params:xml:ns:yang:ietf-l2vpn">
-        <name>local</name>
-        <ac>
-          <name>eth0.3</name>
-        </ac>
-      </endpoint>
-      <endpoint xmlns="urn:ietf:params:xml:ns:yang:ietf-l2vpn">
-        <name>remote</name>
-        <pw>
-          <name>pw1</name>
-        </pw>
-      </endpoint>
-      <vsi-root>
-      <!-- Does not Validate -->
-      </vsi-root>
-    </network-instance>
-  </network-instances>
-  <pseudowires
-      xmlns="urn:ietf:params:xml:ns:yang:ietf-pseudowires">
-    <pseudowire>
-      <name>pw1</name>
-        <peer-ip>2001:db8::50></peer-ip>
-        <pw-id>100</pw-id>
-    </pseudowire>
-  </pseudowires>
-</config>
-            
+{
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2023-12-15T09:04:00-05:00"
+        }
+      },
+      {
+        "name": "eth0.3",
+        "type": "iana-if-type:l2vlan",
+        "ietf-if-extensions:parent-interface": "eth0",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2023-12-15T09:04:00-05:00"
+        },
+        "ietf-if-extensions:encapsulation": {
+          "ietf-if-flexible-encapsulation:flexible": {
+            "match": {
+              "dot1q-vlan-tagged": {
+                "outer-tag": {
+                  "tag-type": "ieee802-dot1q-types:s-vlan",
+                  "vlan-id": "10"
+                },
+                "second-tag": {
+                  "tag-type": "ieee802-dot1q-types:c-vlan",
+                  "vlan-id": "21"
+                }
+              }
+            },
+	    "rewrite":{
+	      "symmetrical": {
+	        "dot1q-tag-rewrite": {
+   		  "pop-tags": 1
+	        }
+	      }
+	    }
+          }
+        }
+      },
+      {
+        "name": "eth1.0",
+        "type": "iana-if-type:l2vlan",
+        "ietf-if-extensions:parent-interface": "eth0",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2023-12-15T09:04:00-05:00"
+        },
+        "ietf-if-extensions:encapsulation": {
+          "ietf-if-flexible-encapsulation:flexible": {
+            "match": {
+              "dot1q-vlan-tagged": {
+                "outer-tag": {
+                  "tag-type": "ieee802-dot1q-types:c-vlan",
+                  "vlan-id": "50"
+                }
+              }
+            },
+	    "rewrite":{
+	      "symmetrical": {
+	        "dot1q-tag-rewrite": {
+   		  "pop-tags": 1
+	        }
+	      }
+	    }
+          }
+        }
+      }
+    ]
+  }
+}
             ]]></artwork>
       </section>
     </section>
-    <!-- This PI places the pagebreak correctly (before the section title) in the text output. -->
-      <section anchor="Acknowledgements" numbered="true" toc="default">
+    <section anchor="Acknowledgements" numbered="true" toc="default">
       <name>Acknowledgements</name>
       <t>The authors would particularly like to thank Benoit Claise, John
         Messenger, Glenn Parsons, and Dan Romascanu for their help progressing
@@ -1187,89 +1202,10 @@ module ietf-if-flexible-encapsulation {
       <t>The authors would also like to thank Martin Bjorklund, Alex Campbell,
         Don Fedyk, Eric Gray, Giles Heron, Marc Holness, Iftekhar Hussain, Neil
         Ketley, William Lupton, John Messenger, Glenn Parsons, Ludwig Pauwels,
-        Joseph White, Vladimir Vassilev, and members of the IEEE 802.1 WG for
-        their helpful reviews and feedback on this draft.</t>
+	Joseph White, Vladimir Vassilev, David Ball and members of the
+	IEEE 802.1 WG for their helpful reviews and feedback on this draft.</t>
     </section>
-    <section numbered="true" toc="default">
-      <name>ChangeLog</name>
-      <t>XXX, RFC Editor, please delete this change log before publication.</t>
-      <section numbered="true" toc="default">
-        <name>WG version -08</name>
-        <ul spacing="normal">
-          <li>Issues Resolved...TBD</li>
-        </ul>
-      </section>
-      <section numbered="true" toc="default">
-        <name>WG version -07 and -06</name>
-        <ul spacing="normal">
-          <li>Apply markups from WG last call.</li>
-        </ul>
-      </section>
-      <section numbered="true" toc="default">
-        <name>WG version -05</name>
-        <ul spacing="normal">
-          <li>Incorporate feedback from IEEE 802.1 WG, John Messenger in
-              particular.</li>
-          <li>Adding must constraints to ensure outer tags are always matched
-	      to C-VLAN and S-VLAN tags.</li>
-          <li>Fixed bug where second tag could be matched without outer tag,
-	      and where tags must not be specified.</li>
-        </ul>
-      </section>
-      <section numbered="true" toc="default">
-        <name>WG version -04</name>
-        <ul spacing="normal">
-          <li>Added examples</li>
-        </ul>
-      </section>
-      <section numbered="true" toc="default">
-        <name>WG version -03</name>
-        <ul spacing="normal">
-          <li>Fix namespace bug in XPath identity references, removed
-              extraneous 'dot1q-tag' containers.</li>
-        </ul>
-      </section>
-      <section numbered="true" toc="default">
-        <name>WG version -02</name>
-        <ul spacing="normal">
-          <li>Use explicit containers for outer and inner tags rather than
-              lists.</li>
-        </ul>
-      </section>
-      <section numbered="true" toc="default">
-        <name>WG version -01</name>
-        <ul spacing="normal">
-          <li>Tweaked the abstract.</li>
-          <li>Removed unnecessary feature for the L3 sub-interface
-              module.</li>
-          <li>Update the 802.1Qcp type references.</li>
-          <li>Remove extra tag container for L3 sub-interfaces YANG.</li>
-        </ul>
-      </section>
-      <section numbered="true" toc="default">
-        <name>Version -04</name>
-        <ul spacing="normal">
-          <li>IEEE 802.1 specific types have been removed from the draft.
-              These are now referenced from the 802.1Qcp draft YANG modules.</li>
-          <li>Fixed errors in the xpath expressions.</li>
-        </ul>
-      </section>
-      <section numbered="true" toc="default">
-        <name>Version -03</name>
-        <ul spacing="normal">
-          <li>Incorporates feedback received from presenting to the IEEE
-              802.1 WG.</li>
-          <li>Updates the modules for double tag matches/rewrites to restrict
-              the outer tag type to S-VLAN and inner tag type to C-VLAN.</li>
-          <li>Updates the introduction to indicate primary use case is for
-              IETF forwarding protocols.</li>
-          <li>Updates the objectives to make IEEE 802.1Q bridge
-              interoperability a key objective.</li>
-        </ul>
-      </section>
-    </section>
-    <!-- Possibly a 'Contributors' section ... -->
-      <section anchor="IANA" numbered="true" toc="default">
+    <section anchor="IANA" numbered="true" toc="default">
       <name>IANA Considerations</name>
       <section anchor="yang-module-registrations" numbered="true" toc="default">
         <name>YANG Module Registrations</name>
@@ -1280,14 +1216,14 @@ module ietf-if-flexible-encapsulation {
           <li>Name: ietf-if-vlan-encapsulation</li>
           <li>XML Namespace: urn:ietf:params:xml:ns:yang:ietf-if-vlan-encapsulation</li>
           <li>Prefix: if-vlan</li>
-          <li>Reference: [RFCXXXX]</li>
+          <li>Reference: RFCXXXX</li>
         </ul>
         <t>The ietf-if-flexible-encapsulation module:</t>
         <ul empty="true" spacing="normal">
           <li>Name: ietf-if-flexible-encapsulation</li>
           <li>XML Namespace: urn:ietf:params:xml:ns:yang:ietf-if-flexible-encapsulation</li>
           <li>Prefix: if-flex</li>
-          <li>Reference: [RFCXXXX]</li>
+          <li>Reference: RFCXXXX</li>
         </ul>
         <t>This document registers two URIs in the "IETF XML Registry" <xref target="RFC3688" format="default"/>.  Following the format in RFC 3688, the following
         registrations have been made.
@@ -1308,10 +1244,11 @@ module ietf-if-flexible-encapsulation {
     <section anchor="Security" numbered="true" toc="default">
       <name>Security Considerations</name>
       <t>The YANG module defined in this memo is designed to be accessed via
-        the NETCONF protocol <xref target="RFC6241" format="default">RFC 6241</xref>. The lowest
+	the NETCONF protocol <xref target="RFC6241" format="default"/>. The lowest
         NETCONF layer is the secure transport layer and the mandatory to
-        implement secure transport is SSH <xref target="RFC6242" format="default">RFC
-        6242</xref>.  The NETCONF access control model <xref target="RFC6536" format="default">RFC 6536</xref> provides the means to restrict access
+	implement secure transport is SSH <xref target="RFC6242" format="default"/>
+	The NETCONF access control model <xref target="RFC8341" format="default"/>
+	provides the means to restrict access
         for particular NETCONF users to a pre-configured subset of all available
         NETCONF protocol operations and content.</t>
       <t>There are a number of
@@ -1410,288 +1347,27 @@ module ietf-if-flexible-encapsulation {
       <name>References</name>
       <references>
         <name>Normative References</name>
-        <!--?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?-->
-      <reference anchor="RFC3688" target="https://www.rfc-editor.org/info/rfc3688" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.3688.xml">
-          <front>
-            <title>The IETF XML Registry</title>
-            <author fullname="M. Mealling" initials="M." surname="Mealling"/>
-            <date month="January" year="2004"/>
-            <abstract>
-              <t>This document describes an IANA maintained registry for IETF standards which use Extensible Markup Language (XML) related items such as Namespaces, Document Type Declarations (DTDs), Schemas, and Resource Description Framework (RDF) Schemas.</t>
-            </abstract>
-          </front>
-          <seriesInfo name="BCP" value="81"/>
-          <seriesInfo name="RFC" value="3688"/>
-          <seriesInfo name="DOI" value="10.17487/RFC3688"/>
-        </reference>
-        <reference anchor="RFC6020" target="https://www.rfc-editor.org/info/rfc6020" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6020.xml">
-          <front>
-            <title>YANG - A Data Modeling Language for the Network Configuration Protocol (NETCONF)</title>
-            <author fullname="M. Bjorklund" initials="M." role="editor" surname="Bjorklund"/>
-            <date month="October" year="2010"/>
-            <abstract>
-              <t>YANG is a data modeling language used to model configuration and state data manipulated by the Network Configuration Protocol (NETCONF), NETCONF remote procedure calls, and NETCONF notifications. [STANDARDS-TRACK]</t>
-            </abstract>
-          </front>
-          <seriesInfo name="RFC" value="6020"/>
-          <seriesInfo name="DOI" value="10.17487/RFC6020"/>
-        </reference>
-        <reference anchor="RFC7950" target="https://www.rfc-editor.org/info/rfc7950" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7950.xml">
-          <front>
-            <title>The YANG 1.1 Data Modeling Language</title>
-            <author fullname="M. Bjorklund" initials="M." role="editor" surname="Bjorklund"/>
-            <date month="August" year="2016"/>
-            <abstract>
-              <t>YANG is a data modeling language used to model configuration data, state data, Remote Procedure Calls, and notifications for network management protocols.  This document describes the syntax and semantics of version 1.1 of the YANG language.  YANG version 1.1 is a maintenance release of the YANG language, addressing ambiguities and defects in the original specification.  There are a small number of backward incompatibilities from YANG version 1.  This document also specifies the YANG mappings to the Network Configuration Protocol (NETCONF).</t>
-            </abstract>
-          </front>
-          <seriesInfo name="RFC" value="7950"/>
-          <seriesInfo name="DOI" value="10.17487/RFC7950"/>
-        </reference>
-        <reference anchor="RFC2119" target="https://www.rfc-editor.org/info/rfc2119" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
-          <front>
-            <title>Key words for use in RFCs to Indicate Requirement Levels</title>
-            <author fullname="S. Bradner" initials="S." surname="Bradner"/>
-            <date month="March" year="1997"/>
-            <abstract>
-              <t>In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</t>
-            </abstract>
-          </front>
-          <seriesInfo name="BCP" value="14"/>
-          <seriesInfo name="RFC" value="2119"/>
-          <seriesInfo name="DOI" value="10.17487/RFC2119"/>
-        </reference>
-        <reference anchor="RFC8174" target="https://www.rfc-editor.org/info/rfc8174" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml">
-          <front>
-            <title>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</title>
-            <author fullname="B. Leiba" initials="B." surname="Leiba"/>
-            <date month="May" year="2017"/>
-            <abstract>
-              <t>RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings.</t>
-            </abstract>
-          </front>
-          <seriesInfo name="BCP" value="14"/>
-          <seriesInfo name="RFC" value="8174"/>
-          <seriesInfo name="DOI" value="10.17487/RFC8174"/>
-        </reference>
-        <reference anchor="RFC8343" target="https://www.rfc-editor.org/info/rfc8343" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8343.xml">
-          <front>
-            <title>A YANG Data Model for Interface Management</title>
-            <author fullname="M. Bjorklund" initials="M." surname="Bjorklund"/>
-            <date month="March" year="2018"/>
-            <abstract>
-              <t>This document defines a YANG data model for the management of network interfaces. It is expected that interface-type-specific data models augment the generic interfaces data model defined in this document. The data model includes definitions for configuration and system state (status information and counters for the collection of statistics).</t>
-              <t>The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in RFC 8342.</t>
-              <t>This document obsoletes RFC 7223.</t>
-            </abstract>
-          </front>
-          <seriesInfo name="RFC" value="8343"/>
-          <seriesInfo name="DOI" value="10.17487/RFC8343"/>
-        </reference>
-        <reference anchor="RFC7224" target="https://www.rfc-editor.org/info/rfc7224" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7224.xml">
-          <front>
-            <title>IANA Interface Type YANG Module</title>
-            <author fullname="M. Bjorklund" initials="M." surname="Bjorklund"/>
-            <date month="May" year="2014"/>
-            <abstract>
-              <t>This document defines the initial version of the iana-if-type YANG module.</t>
-            </abstract>
-          </front>
-          <seriesInfo name="RFC" value="7224"/>
-          <seriesInfo name="DOI" value="10.17487/RFC7224"/>
-        </reference>
-        <reference anchor="RFC8344" target="https://www.rfc-editor.org/info/rfc8344" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8344.xml">
-          <front>
-            <title>A YANG Data Model for IP Management</title>
-            <author fullname="M. Bjorklund" initials="M." surname="Bjorklund"/>
-            <date month="March" year="2018"/>
-            <abstract>
-              <t>This document defines a YANG data model for management of IP implementations. The data model includes configuration and system state.</t>
-              <t>The YANG data model in this document conforms to the Network Management Datastore Architecture defined in RFC 8342.</t>
-              <t>This document obsoletes RFC 7277.</t>
-            </abstract>
-          </front>
-          <seriesInfo name="RFC" value="8344"/>
-          <seriesInfo name="DOI" value="10.17487/RFC8344"/>
-        </reference>
-        <reference anchor="I-D.ietf-netmod-intf-ext-yang" target="https://www.ietf.org/archive/id/draft-ietf-netmod-intf-ext-yang-10.txt" xml:base="https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.ietf-netmod-intf-ext-yang.xml">
-          <front>
-            <title>Common Interface Extension YANG Data Models</title>
-            <author fullname="Robert Wilton">
-              <organization>Cisco Systems</organization>
-            </author>
-            <author fullname="David Ball">
-              <organization>Cisco Systems</organization>
-            </author>
-            <author fullname="Tapraj Singh">
-              <organization>Cisco Systems</organization>
-            </author>
-            <author fullname="Selvakumar Sivaraj">
-              <organization>Juniper Networks</organization>
-            </author>
-            <date day="29" month="July" year="2020"/>
-            <abstract>
-              <t>This document defines two YANG modules that augment the Interfaces data model defined in the "YANG Data Model for Interface Management" with additional configuration and operational data nodes to support common lower layer interface properties, such as interface MTU. The YANG modules in this document conform to the Network Management Datastore Architecture (NMDA) defined in RFC 8342.</t>
-            </abstract>
-          </front>
-          <seriesInfo name="Internet-Draft" value="draft-ietf-netmod-intf-ext-yang-10"/>
-        </reference>
-        <reference anchor="IEEE802.1Qcp-2018">
-          <front>
-            <title>IEEE Std 802.1Qcp-2018: IEEE Standard for
-                    Local and metropolitan area networks -- Bridges
-                    and Bridged Networks -- Amendment 30: YANG Data
-                    Model</title>
-            <author initials="M" surname="Holness">
-              <organization>IEEE 802.1 WG</organization>
-            </author>
-            <date year="2018"/>
-          </front>
-        </reference>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2119.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.3688.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6020.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7224.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7950.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8174.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8343.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8344.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml6/reference.R.IEEE.802.1Q-2022.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-netmod-intf-ext-yang-14.xml"/>
       </references>
       <references>
         <name>Informative References</name>
-        <!-- Here we use entities that we defined at the beginning. -->
-            <!-- &RFC2629;
-      &RFC3552; -->
-      <reference anchor="RFC6241" target="https://www.rfc-editor.org/info/rfc6241" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6241.xml">
-          <front>
-            <title>Network Configuration Protocol (NETCONF)</title>
-            <author fullname="R. Enns" initials="R." role="editor" surname="Enns"/>
-            <author fullname="M. Bjorklund" initials="M." role="editor" surname="Bjorklund"/>
-            <author fullname="J. Schoenwaelder" initials="J." role="editor" surname="Schoenwaelder"/>
-            <author fullname="A. Bierman" initials="A." role="editor" surname="Bierman"/>
-            <date month="June" year="2011"/>
-            <abstract>
-              <t>The Network Configuration Protocol (NETCONF) defined in this document provides mechanisms to install, manipulate, and delete the configuration of network devices.  It uses an Extensible Markup Language (XML)-based data encoding for the configuration data as well as the protocol messages.  The NETCONF protocol operations are realized as remote procedure calls (RPCs).  This document obsoletes RFC 4741. [STANDARDS-TRACK]</t>
-            </abstract>
-          </front>
-          <seriesInfo name="RFC" value="6241"/>
-          <seriesInfo name="DOI" value="10.17487/RFC6241"/>
-        </reference>
-        <reference anchor="RFC6242" target="https://www.rfc-editor.org/info/rfc6242" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6242.xml">
-          <front>
-            <title>Using the NETCONF Protocol over Secure Shell (SSH)</title>
-            <author fullname="M. Wasserman" initials="M." surname="Wasserman"/>
-            <date month="June" year="2011"/>
-            <abstract>
-              <t>This document describes a method for invoking and running the Network Configuration Protocol (NETCONF) within a Secure Shell (SSH) session as an SSH subsystem.  This document obsoletes RFC 4742. [STANDARDS-TRACK]</t>
-            </abstract>
-          </front>
-          <seriesInfo name="RFC" value="6242"/>
-          <seriesInfo name="DOI" value="10.17487/RFC6242"/>
-        </reference>
-        <reference anchor="RFC6536" target="https://www.rfc-editor.org/info/rfc6536" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6536.xml">
-          <front>
-            <title>Network Configuration Protocol (NETCONF) Access Control Model</title>
-            <author fullname="A. Bierman" initials="A." surname="Bierman"/>
-            <author fullname="M. Bjorklund" initials="M." surname="Bjorklund"/>
-            <date month="March" year="2012"/>
-            <abstract>
-              <t>The standardization of network configuration interfaces for use with the Network Configuration Protocol (NETCONF) requires a structured and secure operating environment that promotes human usability and multi-vendor interoperability.  There is a need for standard mechanisms to restrict NETCONF protocol access for particular users to a pre-configured subset of all available NETCONF protocol operations and content.  This document defines such an access control model. [STANDARDS-TRACK]</t>
-            </abstract>
-          </front>
-          <seriesInfo name="RFC" value="6536"/>
-          <seriesInfo name="DOI" value="10.17487/RFC6536"/>
-        </reference>
-        <reference anchor="RFC8340" target="https://www.rfc-editor.org/info/rfc8340" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8340.xml">
-          <front>
-            <title>YANG Tree Diagrams</title>
-            <author fullname="M. Bjorklund" initials="M." surname="Bjorklund"/>
-            <author fullname="L. Berger" initials="L." role="editor" surname="Berger"/>
-            <date month="March" year="2018"/>
-            <abstract>
-              <t>This document captures the current syntax used in YANG module tree diagrams.  The purpose of this document is to provide a single location for this definition.  This syntax may be updated from time to time based on the evolution of the YANG language.</t>
-            </abstract>
-          </front>
-          <seriesInfo name="BCP" value="215"/>
-          <seriesInfo name="RFC" value="8340"/>
-          <seriesInfo name="DOI" value="10.17487/RFC8340"/>
-        </reference>
-        <reference anchor="RFC2460" target="https://www.rfc-editor.org/info/rfc2460" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2460.xml">
-          <front>
-            <title>Internet Protocol, Version 6 (IPv6) Specification</title>
-            <author fullname="S. Deering" initials="S." surname="Deering"/>
-            <author fullname="R. Hinden" initials="R." surname="Hinden"/>
-            <date month="December" year="1998"/>
-            <abstract>
-              <t>This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]</t>
-            </abstract>
-          </front>
-          <seriesInfo name="RFC" value="2460"/>
-          <seriesInfo name="DOI" value="10.17487/RFC2460"/>
-        </reference>
-        <reference anchor="RFC4448" target="https://www.rfc-editor.org/info/rfc4448" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.4448.xml">
-          <front>
-            <title>Encapsulation Methods for Transport of Ethernet over MPLS Networks</title>
-            <author fullname="L. Martini" initials="L." role="editor" surname="Martini"/>
-            <author fullname="E. Rosen" initials="E." surname="Rosen"/>
-            <author fullname="N. El-Aawar" initials="N." surname="El-Aawar"/>
-            <author fullname="G. Heron" initials="G." surname="Heron"/>
-            <date month="April" year="2006"/>
-            <abstract>
-              <t>An Ethernet pseudowire (PW) is used to carry Ethernet/802.3 Protocol Data Units (PDUs) over an MPLS network.  This enables service providers to offer "emulated" Ethernet services over existing MPLS networks.  This document specifies the encapsulation of Ethernet/802.3 PDUs within a pseudowire.  It also specifies the procedures for using a PW to provide a "point-to-point Ethernet" service. [STANDARDS-TRACK]</t>
-            </abstract>
-          </front>
-          <seriesInfo name="RFC" value="4448"/>
-          <seriesInfo name="DOI" value="10.17487/RFC4448"/>
-        </reference>
-        <reference anchor="RFC4761" target="https://www.rfc-editor.org/info/rfc4761" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.4761.xml">
-          <front>
-            <title>Virtual Private LAN Service (VPLS) Using BGP for Auto-Discovery and Signaling</title>
-            <author fullname="K. Kompella" initials="K." role="editor" surname="Kompella"/>
-            <author fullname="Y. Rekhter" initials="Y." role="editor" surname="Rekhter"/>
-            <date month="January" year="2007"/>
-            <abstract>
-              <t>Virtual Private LAN Service (VPLS), also known as Transparent LAN Service and Virtual Private Switched Network service, is a useful Service Provider offering. The service offers a Layer 2 Virtual Private Network (VPN); however, in the case of VPLS, the customers in the VPN are connected by a multipoint Ethernet LAN, in contrast to the usual Layer 2 VPNs, which are point-to-point in nature.</t>
-              <t>This document describes the functions required to offer VPLS, a mechanism for signaling a VPLS, and rules for forwarding VPLS frames across a packet switched network. [STANDARDS-TRACK]</t>
-            </abstract>
-          </front>
-          <seriesInfo name="RFC" value="4761"/>
-          <seriesInfo name="DOI" value="10.17487/RFC4761"/>
-        </reference>
-        <reference anchor="RFC4762" target="https://www.rfc-editor.org/info/rfc4762" xml:base="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.4762.xml">
-          <front>
-            <title>Virtual Private LAN Service (VPLS) Using Label Distribution Protocol (LDP) Signaling</title>
-            <author fullname="M. Lasserre" initials="M." role="editor" surname="Lasserre"/>
-            <author fullname="V. Kompella" initials="V." role="editor" surname="Kompella"/>
-            <date month="January" year="2007"/>
-            <abstract>
-              <t>This document describes a Virtual Private LAN Service (VPLS) solution using pseudowires, a service previously implemented over other tunneling technologies and known as Transparent LAN Services (TLS). A VPLS creates an emulated LAN segment for a given set of users; i.e., it creates a Layer 2 broadcast domain that is fully capable of learning and forwarding on Ethernet MAC addresses and that is closed to a given set of users. Multiple VPLS services can be supported from a single Provider Edge (PE) node.</t>
-              <t>This document describes the control plane functions of signaling pseudowire labels using Label Distribution Protocol (LDP), extending RFC 4447. It is agnostic to discovery protocols. The data plane functions of forwarding are also described, focusing in particular on the learning of MAC addresses. The encapsulation of VPLS packets is described by RFC 4448. [STANDARDS-TRACK]</t>
-            </abstract>
-          </front>
-          <seriesInfo name="RFC" value="4762"/>
-          <seriesInfo name="DOI" value="10.17487/RFC4762"/>
-        </reference>
-        <reference anchor="I-D.ietf-bess-l2vpn-yang" target="https://www.ietf.org/archive/id/draft-ietf-bess-l2vpn-yang-10.txt" xml:base="https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.ietf-bess-l2vpn-yang.xml">
-          <front>
-            <title>YANG Data Model for MPLS-based L2VPN</title>
-            <author fullname="Himanshu Shah">
-              <organization>Ciena Corporation</organization>
-            </author>
-            <author fullname="Patrice Brissette">
-              <organization>Cisco Systems</organization>
-            </author>
-            <author fullname="Ing-When Chen">
-              <organization>The MITRE Corporation</organization>
-            </author>
-            <author fullname="Iftekar Hussain">
-              <organization>Infinera Corporation</organization>
-            </author>
-            <author fullname="Bin Wen">
-              <organization>Comcast</organization>
-            </author>
-            <author fullname="Kishore Tiruveedhula">
-              <organization>Juniper Networks</organization>
-            </author>
-            <date day="2" month="July" year="2019"/>
-            <abstract>
-              <t>This document describes a YANG data model for Layer 2 VPN (L2VPN) services over MPLS networks. These services include point-to-point Virtual Private Wire Service (VPWS) and multipoint Virtual Private LAN service (VPLS) that uses LDP and BGP signaled Pseudowires. It is expected that this model will be used by the management tools run by the network operators in order to manage and monitor the network resources that they use to deliver L2VPN services. This document also describes the YANG data model for the Pseudowires. The independent definition of the Pseudowires facilitates its use in Ethernet Segment and EVPN data models defined in separate document.</t>
-            </abstract>
-          </front>
-          <seriesInfo name="Internet-Draft" value="draft-ietf-bess-l2vpn-yang-10"/>
-        </reference>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4448.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4761.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4762.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6241.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6242.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8200.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8340.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8341.xml"/>
       </references>
     </references>
     <section anchor="comparison" numbered="true" toc="default">
@@ -1795,12 +1471,5 @@ module ietf-if-flexible-encapsulation {
 	    designed for.</t>
       </section>
     </section>
-    <!--    <section anchor="app-additional" title="Additional Stuff">
-      <t>This becomes an Appendix.</t>
-    </section>-->
-        <!-- Change Log
-
-v00 2015-03-02  RGW   Initial version
-                      -->
     </back>
 </rfc>
