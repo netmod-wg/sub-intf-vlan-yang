@@ -32,7 +32,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" consensus="true" docName="draft-ietf-netmod-sub-intf-vlan-model-13" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" consensus="true" docName="draft-ietf-netmod-sub-intf-vlan-model-14" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
   <!-- xml2rfc v2v3 conversion 3.15.0 -->
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
@@ -43,7 +43,7 @@
     <!-- The abbreviated title is used in the page header - it is only necessary if the 
          full title is longer than 39 characters -->
         <title abbrev="Sub-interface VLAN YANG">Sub-interface VLAN YANG Data Models</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-netmod-sub-intf-vlan-model-13"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-netmod-sub-intf-vlan-model-14"/>
     <!-- add 'role="editor"' below for the editors if appropriate -->
         <!-- Another author who claims to be an editor -->
       <author fullname="Robert Wilton" initials="R.G." role="editor" surname="Wilton">
@@ -348,7 +348,7 @@ module: ietf-if-flexible-encapsulation
        defined in <xref target="I-D.ietf-netmod-intf-ext-yang" format="default">ietf-if-extensions.yang</xref>.
        It also contains references to <xref target="RFC8343" format="default"/>,
        <xref target="RFC7224" format="default"/>, and <xref target="IEEE_802.1Q_2022" format="default"/>.</t>
-      <sourcecode name="ietf-if-vlan-encapsulation@2025-01-29.yang" type="" markers="true"><![CDATA[
+      <sourcecode name="ietf-if-vlan-encapsulation@2025-01-29.yang" type="yang" markers="true"><![CDATA[
 module ietf-if-vlan-encapsulation {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-if-vlan-encapsulation";
@@ -511,7 +511,7 @@ module ietf-if-vlan-encapsulation {
        This YANG module also augments the 'interface' list entry
        defined in <xref target="RFC8343" format="default"/>.  It also contains
        references to <xref target="RFC7224" format="default"/>, and <xref target="IEEE_802.1Q_2022" format="default"/>.</t>
-      <sourcecode name="ietf-if-flexible-encapsulation@2025-01-29.yang" type="" markers="true"><![CDATA[
+      <sourcecode name="ietf-if-flexible-encapsulation@2025-01-29.yang" type="yang" markers="true"><![CDATA[
 module ietf-if-flexible-encapsulation {
   yang-version 1.1;
   namespace
@@ -1356,7 +1356,7 @@ module ietf-if-flexible-encapsulation {
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8343.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8344.xml"/>
 	<xi:include href="https://bib.ietf.org/public/rfc/bibxml6/reference.R.IEEE.802.1Q-2022.xml"/>
-	<xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-netmod-intf-ext-yang-14.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-netmod-intf-ext-yang-16.xml"/>
       </references>
       <references>
         <name>Informative References</name>
