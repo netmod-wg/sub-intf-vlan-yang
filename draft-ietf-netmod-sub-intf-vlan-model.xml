@@ -32,7 +32,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" consensus="true" docName="draft-ietf-netmod-sub-intf-vlan-model-14" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" consensus="true" docName="draft-ietf-netmod-sub-intf-vlan-model-16" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
   <!-- xml2rfc v2v3 conversion 3.15.0 -->
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
@@ -43,7 +43,7 @@
     <!-- The abbreviated title is used in the page header - it is only necessary if the 
          full title is longer than 39 characters -->
         <title abbrev="Sub-interface VLAN YANG">Sub-interface VLAN YANG Data Models</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-netmod-sub-intf-vlan-model-14"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-netmod-sub-intf-vlan-model-16"/>
     <!-- add 'role="editor"' below for the editors if appropriate -->
         <!-- Another author who claims to be an editor -->
       <author fullname="Robert Wilton" initials="R.G." role="editor" surname="Wilton">
@@ -86,7 +86,7 @@
         sub-interfaces (e.g. L2VPN attachment circuits) that can interoperate
         with IETF based forwarding protocols; such as IP and L3VPN services; or
         L2VPN services like VPWS, VPLS, and EVPN.  The sub-interfaces also
-        interoperate with VLAN tagged traffic orignating from an IEEE 802.1Q
+        interoperate with VLAN tagged traffic originating from an IEEE 802.1Q
         compliant bridge.</t>
       <t>The model differs from an IEEE 802.1Q bridge model in that the
         configuration is interface/sub-interface based as opposed to being based
@@ -98,7 +98,7 @@
   <middle>
     <section numbered="true" toc="default">
       <name>Introduction</name>
-      <t>This document defines two YANG <xref target="RFC7950" format="default"/> modules that
+      <t>This document defines two YANG <xref target="RFC7950" format="default">YANG 1.1 Data Modeling Language</xref> modules that
         augment the encapsulation choice YANG element defined in <xref target="I-D.ietf-netmod-intf-ext-yang" format="default">Interface Extensions YANG</xref>
         and the generic interfaces data model defined in <xref target="RFC8343" format="default"/>.  The two modules provide configuration nodes to
         support classification of Ethernet/VLAN traffic to sub-interfaces, that
@@ -137,6 +137,12 @@
           when, and only when, they appear in all capitals, as shown here.</t>
         <t>The term 'sub-interface' is defined in section 2.6 of <xref target="I-D.ietf-netmod-intf-ext-yang" format="default">Interface Extensions
           YANG</xref>.</t>
+        <section numbered="true" toc="default">
+        <name>Note to RFC Editor</name>
+        <t> This document uses two placeholder values throughout the document.  Please replace them as follows and remove this note before publication.</t>
+        <t> RFC AAAA, where AAAA is the number assigned to I-D.ietf-netmod-intf-ext-yang at the time of its publication.</t>
+        <t> RFC BBBB, where BBBB is the number assigned to this document at the time of publication. </t>
+        </section>
       </section>
       <section numbered="true" toc="default">
         <name>Tree Diagrams</name>
@@ -197,7 +203,7 @@
        services on router based devices that is fully compatible with IEEE
        802.1Q compliant bridges.</t>
       <t>A secondary aim is for the modules to be structured in such a way that
-       they can be cleanly extended in future.</t>
+       they can be cleanly extended in the future.</t>
       <section numbered="true" toc="default">
         <name>Interoperability with IEEE 802.1Q compliant bridges</name>
         <t>The modules defined in this document are designed to fully
@@ -218,19 +224,18 @@
        802.1Q VLAN sub-interfaces with IP using YANG is provided in <xref target="example1" format="default"/>.</t>
       <t keepWithNext="true">The "ietf-if-vlan-encapsulation" YANG module has the following structure:</t>
       <artwork name="" type="" align="left" alt=""><![CDATA[
-                    
 module: ietf-if-vlan-encapsulation
+
   augment /if:interfaces/if:interface/if-ext:encapsulation
             /if-ext:encaps-type:
     +--:(dot1q-vlan)
        +--rw dot1q-vlan
           +--rw outer-tag
-          |  +--rw tag-type dot1q-tag-type
+          |  +--rw tag-type    dot1q-tag-type
           |  +--rw vlan-id     vlanid
           +--rw second-tag!
-             +--rw tag-type dot1q-tag-type
+             +--rw tag-type    dot1q-tag-type
              +--rw vlan-id     vlanid
-            
           ]]></artwork>
     </section>
     <section numbered="true" toc="default">
@@ -245,9 +250,18 @@ module: ietf-if-vlan-encapsulation
         forwarding code for further handling.  The forwarding instance, e.g.,
         L2VPN, VPLS, etc., is configured using a separate YANG configuration
         model defined elsewhere.</t>
+      <artwork name="" type="" align="left" alt=""><![CDATA[
++-----------+------------+-----------+------------+---------+
+|Destination|Source MAC  |S-Tag      |C-Tag       |EtherType|
+|MAC (6B)   |Address (6B)|- Outer Tag|- Second Tag|or Length|
++-----------+------------+-----------+------------+---------+
+|Payload (46-1500B)                                         |
++-----------------------------------------------------------+
+          ]]></artwork>
       <t>The model supports a common core set of layer 2 header matches based
         on the 802.1Q tag type and VLAN Ids contained within the header up to a
-        tag stack depth of two tags.</t>
+        tag stack depth of two tags.  When there are two tags, there is an outer tag
+        and a second-tag (inner). </t>
       <t>The model supports flexible rewrites of the layer 2 frame header for
         data frames as they are processed on the interface. It defines a set of
         standard tag manipulations that allow for the insertion, removal, or
@@ -271,11 +285,11 @@ module: ietf-if-vlan-encapsulation
         within the layer 2 frame header.</t>
       <t>A short example of configuring 802.1Q VLAN sub-interfaces with L2VPN
         using YANG is provided in <xref target="example2" format="default"/>.</t>
-      <t keepWithNext="true">The "ietf-if-flexible-encapsulation" YANG module has the following
-         structure:</t>
+      <t keepWithNext="true">The "ietf-if-flexible-encapsulation" YANG module
+         has the following structure:</t>
       <artwork name="" type="" align="left" alt=""><![CDATA[
-                    
 module: ietf-if-flexible-encapsulation
+
   augment /if:interfaces/if:interface/if-ext:encapsulation
             /if-ext:encaps-type:
     +--:(flexible)
@@ -288,14 +302,14 @@ module: ietf-if-flexible-encapsulation
           |     |  +--rw untagged?                empty
           |     +--:(dot1q-priority-tagged)
           |     |  +--rw dot1q-priority-tagged
-          |     |     +--rw tag-type dot1q-types:dot1q-tag-type
+          |     |     +--rw tag-type    dot1q-types:dot1q-tag-type
           |     +--:(dot1q-vlan-tagged)
           |        +--rw dot1q-vlan-tagged
           |           +--rw outer-tag
-          |           |  +--rw tag-type dot1q-tag-type
+          |           |  +--rw tag-type    dot1q-tag-type
           |           |  +--rw vlan-id     union
           |           +--rw second-tag!
-          |           |  +--rw tag-type dot1q-tag-type
+          |           |  +--rw tag-type    dot1q-tag-type
           |           |  +--rw vlan-id     union
           |           +--rw match-exact-tags?   empty
           +--rw rewrite {flexible-rewrites}?
@@ -306,10 +320,10 @@ module: ietf-if-flexible-encapsulation
           |     |        +--rw pop-tags?    uint8
           |     |        +--rw push-tags!
           |     |           +--rw outer-tag
-          |     |           |  +--rw tag-type dot1q-tag-type
+          |     |           |  +--rw tag-type    dot1q-tag-type
           |     |           |  +--rw vlan-id     vlanid
           |     |           +--rw second-tag!
-          |     |              +--rw tag-type dot1q-tag-type
+          |     |              +--rw tag-type    dot1q-tag-type
           |     |              +--rw vlan-id     vlanid
           |     +--:(asymmetrical) {asymmetric-rewrites}?
           |        +--rw ingress
@@ -317,29 +331,28 @@ module: ietf-if-flexible-encapsulation
           |        |     +--rw pop-tags?    uint8
           |        |     +--rw push-tags!
           |        |        +--rw outer-tag
-          |        |        |  +--rw tag-type dot1q-tag-type
+          |        |        |  +--rw tag-type    dot1q-tag-type
           |        |        |  +--rw vlan-id     vlanid
           |        |        +--rw second-tag!
-          |        |           +--rw tag-type dot1q-tag-type
+          |        |           +--rw tag-type    dot1q-tag-type
           |        |           +--rw vlan-id     vlanid
           |        +--rw egress
           |           +--rw dot1q-tag-rewrite {dot1q-tag-rewrites}?
           |              +--rw pop-tags?    uint8
           |              +--rw push-tags!
           |                 +--rw outer-tag
-          |                 |  +--rw tag-type dot1q-tag-type
+          |                 |  +--rw tag-type    dot1q-tag-type
           |                 |  +--rw vlan-id     vlanid
           |                 +--rw second-tag!
-          |                    +--rw tag-type dot1q-tag-type
+          |                    +--rw tag-type    dot1q-tag-type
           |                    +--rw vlan-id     vlanid
           +--rw local-traffic-default-encaps!
              +--rw outer-tag
-             |  +--rw tag-type dot1q-tag-type
+             |  +--rw tag-type    dot1q-tag-type
              |  +--rw vlan-id     vlanid
              +--rw second-tag!
-                +--rw tag-type dot1q-tag-type
+                +--rw tag-type    dot1q-tag-type
                 +--rw vlan-id     vlanid
-            
           ]]></artwork>
     </section>
     <section numbered="true" toc="default">
@@ -348,7 +361,7 @@ module: ietf-if-flexible-encapsulation
        defined in <xref target="I-D.ietf-netmod-intf-ext-yang" format="default">ietf-if-extensions.yang</xref>.
        It also contains references to <xref target="RFC8343" format="default"/>,
        <xref target="RFC7224" format="default"/>, and <xref target="IEEE_802.1Q_2022" format="default"/>.</t>
-      <sourcecode name="ietf-if-vlan-encapsulation@2025-01-29.yang" type="yang" markers="true"><![CDATA[
+      <sourcecode name="ietf-if-vlan-encapsulation@2025-07-22.yang" type="yang" markers="true"><![CDATA[
 module ietf-if-vlan-encapsulation {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-if-vlan-encapsulation";
@@ -359,13 +372,11 @@ module ietf-if-vlan-encapsulation {
     reference
       "RFC 8343: A YANG Data Model For Interface Management";
   }
-
   import iana-if-type {
     prefix ianaift;
     reference
       "RFC 7224: IANA Interface Type YANG Module";
   }
-
   import ieee802-dot1q-types {
     prefix dot1q-types;
     reference
@@ -373,23 +384,21 @@ module ietf-if-vlan-encapsulation {
        IEEE Std 802.1Q-2022, IEEE Std 802.1Qcz-2023,
        IEEE Std 802.1Qcw-2023, IEEE Std 802.1Qcj-2023";
   }
-
   import ietf-if-extensions {
     prefix if-ext;
     reference
-      "RFC XXXX: Common Interface Extension YANG Data Models";
+      "RFC AAAA: Common Interface Extension YANG Data Models";
   }
 
   organization
     "IETF NETMOD (NETCONF Data Modeling Language) Working Group";
-
   contact
-    "WG Web:   <http://tools.ietf.org/wg/netmod/>
+    "WG Web:   <http://datatracker.ietf.org/wg/netmod/>
      WG List:  <mailto:netmod@ietf.org>
 
-     Editor:   Robert Wilton
-               <mailto:rwilton@cisco.com>";
-
+     Editors:
+      Robert Wilton <mailto:rwilton@cisco.com>
+      Scott Mansfield <mailto:scott.mansfield@ericsson.com>";
   description
     "This YANG module models configuration to classify IEEE 802.1Q
      VLAN tagged Ethernet traffic by exactly matching the tag type
@@ -405,8 +414,8 @@ module ietf-if-vlan-encapsulation {
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
 
-     This version of this YANG module is part of RFC XXXX
-     (https://www.rfc-editor.org/info/rfcXXXX); see the RFC itself
+     This version of this YANG module is part of RFC BBBB
+     (https://www.rfc-editor.org/info/rfcBBBB); see the RFC itself
      for full legal notices.
 
      The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
@@ -415,11 +424,11 @@ module ietf-if-vlan-encapsulation {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2025-01-29 {
+  revision 2025-07-22 {
     description
-      "VLAN encapulations YANG model";
+      "Initial version of the module";
     reference
-      "RFC XXXX: Sub-interface VLAN YANG Data Models";
+      "RFC BBBB: Sub-interface VLAN YANG Data Models";
   }
 
   augment "/if:interfaces/if:interface/if-ext:encapsulation/"
@@ -429,18 +438,15 @@ module ietf-if-vlan-encapsulation {
           derived-from-or-self(../if:type,
                                'ianaift:ieee8023adLag') or
           derived-from-or-self(../if:type, 'ianaift:l2vlan')" {
-        description
-          "Applies only to Ethernet-like interfaces and
-           sub-interfaces.";
+      description
+        "Applies only to Ethernet-like interfaces and
+         sub-interfaces.";
     }
-
     description
       "Augment the generic interface encapsulation with basic 802.1Q
        VLAN tag classifications";
-
     case dot1q-vlan {
       container dot1q-vlan {
-
         description
           "Classifies 802.1Q VLAN tagged Ethernet frames to a
            sub-interface (or interface) by exactly matching the
@@ -453,49 +459,38 @@ module ietf-if-vlan-encapsulation {
            Frames that do not match any sub-interface are processed
            directly on the parent interface, if it is associated with
            a forwarding instance, otherwise they are dropped.";
-
         container outer-tag {
           must 'tag-type = "dot1q-types:s-vlan" or '
              + 'tag-type = "dot1q-types:c-vlan"' {
-
             error-message
               "Only C-VLAN and S-VLAN tags can be matched.";
-
             description
               "For IEEE 802.1Q interoperability, only C-VLAN and
                S-VLAN tags are matched.";
           }
-
           description
             "Specifies the VLAN tag values to match against the
              outermost (first) 802.1Q VLAN tag in the frame.";
-
           uses dot1q-types:dot1q-tag-classifier-grouping;
         }
-
         container second-tag {
           must '../outer-tag/tag-type = "dot1q-types:s-vlan" and '
              + 'tag-type = "dot1q-types:c-vlan"' {
-
             error-message
               "When matching two 802.1Q VLAN tags, the outermost
                (first) tag in the frame MUST be specified and be of
                S-VLAN type and the second tag in the frame must be of
                C-VLAN tag type.";
-
             description
               "For IEEE 802.1Q interoperability, when matching two
                802.1Q VLAN tags, it is REQUIRED that the outermost
                tag exists and is an S-VLAN, and the second tag is a
                C-VLAN.";
           }
-
           presence "Classify frames that have two 802.1Q VLAN tags.";
-
           description
             "Specifies the VLAN tag values to match against the
              second outermost 802.1Q VLAN tag in the frame.";
-
           uses dot1q-types:dot1q-tag-classifier-grouping;
         }
       }
@@ -511,7 +506,7 @@ module ietf-if-vlan-encapsulation {
        This YANG module also augments the 'interface' list entry
        defined in <xref target="RFC8343" format="default"/>.  It also contains
        references to <xref target="RFC7224" format="default"/>, and <xref target="IEEE_802.1Q_2022" format="default"/>.</t>
-      <sourcecode name="ietf-if-flexible-encapsulation@2025-01-29.yang" type="yang" markers="true"><![CDATA[
+      <sourcecode name="ietf-if-flexible-encapsulation@2025-07-22.yang" type="yang" markers="true"><![CDATA[
 module ietf-if-flexible-encapsulation {
   yang-version 1.1;
   namespace
@@ -523,13 +518,11 @@ module ietf-if-flexible-encapsulation {
     reference
       "RFC 8343: A YANG Data Model For Interface Management";
   }
-
   import iana-if-type {
     prefix ianaift;
     reference
       "RFC 7224: IANA Interface Type YANG Module";
   }
-
   import ieee802-dot1q-types {
     prefix dot1q-types;
     reference
@@ -537,29 +530,27 @@ module ietf-if-flexible-encapsulation {
        IEEE Std 802.1Q-2022, IEEE Std 802.1Qcz-2023,
        IEEE Std 802.1Qcw-2023, IEEE Std 802.1Qcj-2023";
   }
-
   import ietf-if-extensions {
     prefix if-ext;
     reference
-      "RFC XXXX: Common Interface Extension YANG Data Models";
+      "RFC AAAA: Common Interface Extension YANG Data Models";
   }
 
   organization
     "IETF NETMOD (NETCONF Data Modeling Language) Working Group";
-
   contact
-    "WG Web:   <http://tools.ietf.org/wg/netmod/>
+    "WG Web:   <http://datatracker.ietf.org/wg/netmod/>
      WG List:  <mailto:netmod@ietf.org>
 
-     Editor:   Robert Wilton
-               <mailto:rwilton@cisco.com>";
-
+     Editors:
+      Robert Wilton <mailto:rwilton@cisco.com>
+      Scott Mansfield <mailto:scott.mansfield@ericsson.com>";
   description
     "This YANG module describes interface configuration for flexible
      classification and rewrites of IEEE 802.1Q VLAN tagged Ethernet
      traffic.
 
-     Copyright (c) 2022 IETF Trust and the persons identified as
+     Copyright (c) 2025 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -569,8 +560,8 @@ module ietf-if-flexible-encapsulation {
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
 
-     This version of this YANG module is part of RFC XXXX
-     (https://www.rfc-editor.org/info/rfcXXXX); see the RFC itself
+     This version of this YANG module is part of RFC BBBB
+     (https://www.rfc-editor.org/info/rfcBBBB); see the RFC itself
      for full legal notices.
 
      The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
@@ -579,17 +570,17 @@ module ietf-if-flexible-encapsulation {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2025-01-29 {
+  revision 2025-07-22 {
     description
-      "Interface flexible encapsulations YANG model";
+      "Initial version of the module";
     reference
-      "RFC XXXX: Sub-interface VLAN YANG Data Models";
+      "RFC BBBB: Sub-interface VLAN YANG Data Models";
   }
 
   feature flexible-rewrites {
     description
       "This feature indicates that the network element supports
-        specifying flexible rewrite operations.";
+       specifying flexible rewrite operations.";
   }
 
   feature asymmetric-rewrites {
@@ -619,111 +610,86 @@ module ietf-if-flexible-encapsulation {
             i.   single tag
             ii.  set of tag ranges/values.
             iii. 'any' keyword";
-
     choice match-type {
       mandatory true;
-
       description
         "Provides a choice of how the frames may be
          matched";
-
       case default {
         description
           "Default match";
-
         leaf default {
           type empty;
-
           description
             "Default match.  Matches all traffic not matched to any
              other peer sub-interface by a more specific
              encapsulation.";
         }
       }
-
       case untagged {
         description
           "Match untagged Ethernet frames only";
-
         leaf untagged {
           type empty;
-
           description
             "Untagged match.  Matches all untagged traffic.";
         }
       }
-
       case dot1q-priority-tagged {
         description
           "Match 802.1Q priority tagged Ethernet frames only";
-
         container dot1q-priority-tagged {
           description
             "802.1Q priority tag match";
-
           leaf tag-type {
             type dot1q-types:dot1q-tag-type;
             mandatory true;
-
             description
               "The 802.1Q tag type of matched priority
                tagged packets";
           }
         }
       }
-
       case dot1q-vlan-tagged {
         container dot1q-vlan-tagged {
           description
             "Matches VLAN tagged frames";
-
           container outer-tag {
             must 'tag-type = "dot1q-types:s-vlan" or '
                + 'tag-type = "dot1q-types:c-vlan"' {
-
               error-message
                 "Only C-VLAN and S-VLAN tags can be matched.";
-
               description
                 "For IEEE 802.1Q interoperability, only C-VLAN and
                  S-VLAN tags can be matched.";
             }
-
             description
               "Classifies traffic using the outermost (first) VLAN
                tag on the frame.";
-
             uses "dot1q-types:"
                + "dot1q-tag-ranges-or-any-classifier-grouping";
           }
-
           container second-tag {
             must
               '../outer-tag/tag-type = "dot1q-types:s-vlan" and '
             + 'tag-type = "dot1q-types:c-vlan"' {
-
               error-message
                 "When matching two tags, the outermost (first) tag
                  must be specified and of S-VLAN type and the second
                  outermost tag must be of C-VLAN tag type.";
-
               description
                 "For IEEE 802.1Q interoperability, when matching two
                  tags, it is required that the outermost (first) tag
                  exists and is an S-VLAN, and the second outermost
                  tag is a C-VLAN.";
             }
-
             presence "Also classify on the second VLAN tag.";
-
             description
               "Classifies traffic using the second outermost VLAN tag
                on the frame.";
-
             uses "dot1q-types:"
                + "dot1q-tag-ranges-or-any-classifier-grouping";
           }
-
           leaf match-exact-tags {
             type empty;
             description
@@ -743,65 +709,50 @@ module ietf-if-flexible-encapsulation {
       "Flexible rewrite grouping.  Can be either be expressed
        symmetrically, or independently in the ingress and/or egress
        directions.";
-
     leaf pop-tags {
       type uint8 {
         range "1..2";
       }
-
       description
         "The number of 802.1Q VLAN tags to pop, or translate if used
          in conjunction with push-tags.
 
          Popped tags are the outermost tags on the frame.";
     }
-
     container push-tags {
       presence "802.1Q tags are pushed or translated";
-
       description
         "The 802.1Q tags to push on the front of the frame, or
          translate if configured in conjunction with pop-tags.";
-
       container outer-tag {
         must 'tag-type = "dot1q-types:s-vlan" or '
            + 'tag-type = "dot1q-types:c-vlan"' {
-
           error-message "Only C-VLAN and S-VLAN tags can be pushed.";
-
           description
             "For IEEE 802.1Q interoperability, only C-VLAN and S-VLAN
              tags can be pushed.";
         }
-
         description
           "The outermost (first) VLAN tag to push onto the frame.";
-
         uses dot1q-types:dot1q-tag-classifier-grouping;
       }
-
       container second-tag {
         must '../outer-tag/tag-type = "dot1q-types:s-vlan" and '
            + 'tag-type = "dot1q-types:c-vlan"' {
-
           error-message
             "When pushing/rewriting two tags, the outermost tag must
              be specified and of S-VLAN type and the second outermost
              tag must be of C-VLAN tag type.";
-
           description
             "For IEEE 802.1Q interoperability, when pushing two tags,
              it is required that the outermost tag exists and is an
              S-VLAN, and the second outermost tag is a C-VLAN.";
         }
-
         presence
           "In addition to the first tag, also push/rewrite a second
            VLAN tag.";
-
         description
           "The second outermost VLAN tag to push onto the frame.";
-
         uses dot1q-types:dot1q-tag-classifier-grouping;
       }
     }
@@ -810,17 +761,14 @@ module ietf-if-flexible-encapsulation {
   grouping flexible-rewrite {
     description
       "Grouping for flexible rewrites of fields in the L2 header.
-       
+
        Restricted to flexible 802.1Q VLAN tag rewrites, but could be
        extended to cover rewrites of other fields in the L2 header in
        future.";
-
     container dot1q-tag-rewrite {
       if-feature "dot1q-tag-rewrites";
-
       description
         "802.1Q VLAN tag rewrite.
-
          Translate operations are expressed as a combination of tag
          push and pop operations.  E.g., translating the outer tag is
          expressed as popping a single tag, and pushing a single tag.
@@ -838,20 +786,16 @@ module ietf-if-flexible-encapsulation {
           derived-from-or-self(../if:type,
                                'ianaift:ieee8023adLag') or
           derived-from-or-self(../if:type, 'ianaift:l2vlan')" {
-
-        description
-          "Applies only to Ethernet-like interfaces and
-           sub-interfaces.";
+      description
+        "Applies only to Ethernet-like interfaces and
+         sub-interfaces.";
     }
-
     description
       "Augment the generic interface encapsulation with flexible
        match and rewrite for VLAN sub-interfaces.";
-
     case flexible {
       description
         "Flexible encapsulation and rewrite";
-
       container flexible {
         description
           "Flexible encapsulation allows for the matching of ranges
@@ -861,7 +805,6 @@ module ietf-if-flexible-encapsulation {
            The structure is also designed to be extended to allow for
            matching/rewriting other fields within the L2 frame header
            if required.";
-
         container match {
           description
             "Flexibly classifies Ethernet frames to a sub-interface
@@ -880,14 +823,11 @@ module ietf-if-flexible-encapsulation {
              sub-interface with the most specific match.  E.g.,
              matching two VLAN tags in the frame is more specific
              than matching the outermost VLAN tag, which is more
-             specific than the catch all 'default' match.";
-
+             specific than the catch-all 'default' match.";
           uses flexible-match;
         }
-
         container rewrite {
           if-feature "flexible-rewrites";
-
           description
             "L2 frame rewrite operations.
 
@@ -895,21 +835,18 @@ module ietf-if-flexible-encapsulation {
              as it transits the interface/sub-interface.  Examples
              include adding a VLAN tag, removing a VLAN tag, or
              rewriting the VLAN Id carried in a VLAN tag.";
-
           choice direction {
             description
               "Whether the rewrite policy is symmetrical or
                asymmetrical.";
-
             case symmetrical {
               container symmetrical {
                 uses flexible-rewrite;
-
                 description
                   "Symmetrical rewrite.  Expressed in the ingress
                    direction, but the reverse operation is applied to
                    egress traffic.
- 
+
                    E.g., if a tag is pushed on ingress traffic, then
                    the reverse operation is a 'pop 1', that is
                    performed on traffic egressing the interface, so
@@ -917,20 +854,16 @@ module ietf-if-flexible-encapsulation {
                    for both ingress and egress traffic.";
               }
             }
-
             case asymmetrical {
               if-feature "asymmetric-rewrites";
-
               description
                 "Asymmetrical rewrite.
 
                  Rewrite operations may be specified in only a single
                  direction, or different rewrite operations may be
                  specified in each direction.";
-
               container ingress {
                 uses flexible-rewrite;
-
                 description
                   "A rewrite operation that only applies to ingress
                    traffic.
@@ -939,10 +872,8 @@ module ietf-if-flexible-encapsulation {
                    the frame is subsequently processed by the
                    forwarding operation.";
               }
-
               container egress {
                 uses flexible-rewrite;
-
                 description
                   "A rewrite operation that only applies to egress
                    traffic.";
@@ -950,11 +881,9 @@ module ietf-if-flexible-encapsulation {
             }
           }
         }
-
         container local-traffic-default-encaps {
           presence "A local traffic default encapsulation has been
                     specified.";
-
           description
             "Specifies the 802.1Q VLAN tags to use by default for
              locally sourced traffic from the interface.
@@ -962,50 +891,39 @@ module ietf-if-flexible-encapsulation {
              Used for encapsulations that match a range of VLANs (or
              'any'), where the source VLAN Ids are otherwise
              ambiguous.";
-
           container outer-tag {
             must 'tag-type = "dot1q-types:s-vlan" or '
                + 'tag-type = "dot1q-types:c-vlan"' {
-
               error-message
                 "Only C-VLAN and S-VLAN tags can be matched.";
-
               description
                 "For IEEE 802.1Q interoperability, only C-VLAN and
                  S-VLAN tags can be matched.";
             }
-
             description
               "The outermost (first) VLAN tag for locally sourced
                traffic.";
-
             uses dot1q-types:dot1q-tag-classifier-grouping;
           }
-
           container second-tag {
             must
               '../outer-tag/tag-type = "dot1q-types:s-vlan" and '
             + 'tag-type = "dot1q-types:c-vlan"' {
-
               error-message
                 "When specifying two tags, the outermost (first) tag
                  must be specified and of S-VLAN type and the second
                  outermost tag must be of C-VLAN tag type.";
-
               description
                 "For IEEE 802.1Q interoperability, when specifying
                  two tags, it is required that the outermost (first)
                  tag exists and is an S-VLAN, and the second
                  outermost tag is a C-VLAN.";
             }
-
             presence
               "Indicates existence of a second outermost VLAN tag.";
-
             description
               "The second outermost VLAN tag for locally sourced
                traffic.";
-
             uses dot1q-types:dot1q-tag-classifier-grouping;
           }
         }
@@ -1035,19 +953,11 @@ module ietf-if-flexible-encapsulation {
     "interface": [
       {
         "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2023-12-15T09:04:00-05:00"
-        }
+        "type": "iana-if-type:ethernetCsmacd"
       },
       {
         "name": "eth0.1",
         "type": "iana-if-type:l2vlan",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2023-12-15T09:04:00-05:00"
-        },
         "ietf-if-extensions:encapsulation": {
           "ietf-if-vlan-encapsulation:dot1q-vlan": {
             "outer-tag": {
@@ -1075,10 +985,6 @@ module ietf-if-flexible-encapsulation {
       {
         "name": "eth0.2",
         "type": "iana-if-type:l2vlan",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2023-12-15T09:04:00-05:00"
-        },
         "ietf-if-extensions:encapsulation": {
           "ietf-if-vlan-encapsulation:dot1q-vlan": {
             "outer-tag": {
@@ -1107,7 +1013,7 @@ module ietf-if-flexible-encapsulation {
       <section anchor="example2" numbered="true" toc="default">
         <name>Layer 2 sub-interfaces with L2VPN</name>
         <t>This example illustrates a layer 2 sub-interface 'eth0.3'
-            configured to match traffic with a S-VLAN tag of 10, and C-VLAN tag
+            configured to match traffic with an S-VLAN tag of 10, and a C-VLAN tag
             of 21; and remove the outer tag (S-VLAN 10) before the traffic is
             passed off to the L2VPN service.</t>
         <t>It also illustrates another sub-interface 'eth1.0' under a
@@ -1122,20 +1028,12 @@ module ietf-if-flexible-encapsulation {
     "interface": [
       {
         "name": "eth0",
-        "type": "iana-if-type:ethernetCsmacd",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2023-12-15T09:04:00-05:00"
-        }
+        "type": "iana-if-type:ethernetCsmacd"
       },
       {
         "name": "eth0.3",
         "type": "iana-if-type:l2vlan",
         "ietf-if-extensions:parent-interface": "eth0",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2023-12-15T09:04:00-05:00"
-        },
         "ietf-if-extensions:encapsulation": {
           "ietf-if-flexible-encapsulation:flexible": {
             "match": {
@@ -1164,10 +1062,6 @@ module ietf-if-flexible-encapsulation {
         "name": "eth1.0",
         "type": "iana-if-type:l2vlan",
         "ietf-if-extensions:parent-interface": "eth0",
-        "oper-status": "up",
-        "statistics": {
-          "discontinuity-time": "2023-12-15T09:04:00-05:00"
-        },
         "ietf-if-extensions:encapsulation": {
           "ietf-if-flexible-encapsulation:flexible": {
             "match": {
@@ -1243,102 +1137,21 @@ module ietf-if-flexible-encapsulation {
     </section>
     <section anchor="Security" numbered="true" toc="default">
       <name>Security Considerations</name>
-      <t>The YANG module defined in this memo is designed to be accessed via
-	the NETCONF protocol <xref target="RFC6241" format="default"/>. The lowest
-        NETCONF layer is the secure transport layer and the mandatory to
-	implement secure transport is SSH <xref target="RFC6242" format="default"/>
-	The NETCONF access control model <xref target="RFC8341" format="default"/>
-	provides the means to restrict access
-        for particular NETCONF users to a pre-configured subset of all available
-        NETCONF protocol operations and content.</t>
-      <t>There are a number of
-        data nodes defined in this YANG module which are
+      <t>The "ietf-if-flexible-encapsulation" and "ietf-if-vlan-encapsulation" YANG modules define data models that are designed to be accessed via YANG-based management protocols, such as NETCONF <xref target="RFC6241" format="default"/> and RESTCONF <xref target="RFC8040" format="default"/>. These protocols have to use a secure transport layer (e.g., SSH <xref target="RFC4252" format="default"/>, TLS <xref target="RFC8446" format="default"/>, and QUIC <xref target="RFC9000" format="default"/>) and have to use mutual authentication.</t>
+      <t>The Network Configuration Access Control Model (NACM) <xref target="RFC8341" format="default"/> provides the means to restrict access for particular NETCONF or RESTCONF users to a pre-configured subset of all available
+        NETCONF or RESTCONF protocol operations and content.</t>
+      <t>There are a number of data nodes defined in these YANG modules that are
         writable/creatable/deletable (i.e. config true, which is the default).
-        These data nodes may be considered sensitive or vulnerable in some
-        network environments.  Write operations (e.g. edit-config) to these data
-        nodes without proper protection can have a negative effect on network
-        operations.  These are the subtrees and data nodes and their
-        sensitivity/vulnerability:</t>
-      <section numbered="true" toc="default">
-        <name>ietf-if-vlan-encapsulation.yang</name>
-        <t>The nodes in the vlan encapsulation YANG module are concerned with
-          matching particular frames received on the network device to connect
-          them to a layer 3 forwarding instance, and as such
-          adding/modifying/deleting these nodes has a high risk of causing
-          traffic to be lost because it is not being classified correctly, or is
-          being classified to a separate sub-interface. The nodes, all under the
-          subtree /interfaces/interface/encapsulation/dot1q-vlan, that are
-          sensitive to this are:
-        </t>
-        <ul spacing="normal">
-          <li>outer-tag/tag-type</li>
-          <li>outer-tag/vlan-id</li>
-          <li>second-tag/tag-type</li>
-          <li>second-tag/vlan-id</li>
-        </ul>
-      </section>
-      <section numbered="true" toc="default">
-        <name>ietf-if-flexible-encapsulation.yang</name>
-        <t>There are many nodes in the flexible encapsulation YANG module that
-          are concerned with matching particular frames received on the network
-          device, and as such adding/modifying/deleting these nodes has a high
-          risk of causing traffic to be lost because it is not being classified
-          correctly, or is being classified to a separate sub-interface. The
-          nodes, all under the subtree
-          /interfaces/interface/encapsulation/flexible/match, that are sensitive
-          to this are:
-        </t>
-        <ul spacing="normal">
-          <li>default</li>
-          <li>untagged</li>
-          <li>dot1q-priority-tagged</li>
-          <li>dot1q-priority-tagged/tag-type</li>
-          <li>dot1q-vlan-tagged/outer-tag/vlan-type</li>
-          <li>dot1q-vlan-tagged/outer-tag/vlan-id</li>
-          <li>dot1q-vlan-tagged/second-tag/vlan-type</li>
-          <li>dot1q-vlan-tagged/second-tag/vlan-id</li>
-        </ul>
-        <t>There are also many modes in the flexible encapsulation YANG module
-	  that are concerned with rewriting the fields in the L2 header for
-	  particular frames received on the network device, and as such
-	  adding/modifying/deleting these nodes has a high risk of causing
-	  traffic to be dropped or incorrectly processed on peer network
-	  devices, or it could cause layer 2 tunnels to go down due to a
-	  mismatch in negotiated MTU. The nodes, all under the subtree
-	  /interfaces/interface/encapsulation/flexible/rewrite, that are
-	  sensitive to this are:
-        </t>
-        <ul spacing="normal">
-          <li>symmetrical/dot1q-tag-rewrite/pop-tags</li>
-          <li>symmetrical/dot1q-tag-rewrite/push-tags/outer-tag/tag-type</li>
-          <li>symmetrical/dot1q-tag-rewrite/push-tags/outer-tag/vlan-id</li>
-          <li>symmetrical/dot1q-tag-rewrite/push-tags/second-tag/tag-type</li>
-          <li>symmetrical/dot1q-tag-rewrite/push-tags/second-tag/vlan-id</li>
-          <li>asymmetrical/ingress/dot1q-tag-rewrite/pop-tags</li>
-          <li>asymmetrical/ingress/dot1q-tag-rewrite/push-tags/outer-tag/tag-type</li>
-          <li>asymmetrical/ingress/dot1q-tag-rewrite/push-tags/outer-tag/vlan-id</li>
-          <li>asymmetrical/ingress/dot1q-tag-rewrite/push-tags/second-tag/tag-type</li>
-          <li>asymmetrical/ingress/dot1q-tag-rewrite/push-tags/second-tag/vlan-id</li>
-          <li>asymmetrical/egress/dot1q-tag-rewrite/pop-tags</li>
-          <li>asymmetrical/egress/dot1q-tag-rewrite/push-tags/outer-tag/tag-type</li>
-          <li>asymmetrical/egress/dot1q-tag-rewrite/push-tags/outer-tag/vlan-id</li>
-          <li>asymmetrical/egress/dot1q-tag-rewrite/push-tags/second-tag/tag-type</li>
-          <li>asymmetrical/egress/dot1q-tag-rewrite/push-tags/second-tag/vlan-id</li>
-        </ul>
-        <t>Nodes in the flexible-encapsulation YANG module that are
-          concerned with the VLAN tags to use for traffic sourced from the
-          network element could cause protocol sessions (such as CFM) to fail if
-          they are added, modified or deleted. The nodes, all under the subtree
-          /interfaces/interface/flexible-encapsulation/local-traffic-default-encaps
-          that are sensitive to this are:
-        </t>
-        <ul spacing="normal">
-          <li>outer-tag/vlan-type</li>
-          <li>outer-tag/vlan-id</li>
-          <li>second-tag/vlan-type</li>
-          <li>second-tag/vlan-id</li>
-        </ul>
-      </section>
+        All writable data nodes are likely to be reasonably sensitive or vulnerable in some network environments.  
+        Write operations (e.g. edit-config) and delete operations to these data
+        nodes without proper protection or authentication can have a negative effect on network operations.
+        The following subtrees and data nodes have particular sensitivities/vulnerabilities:  
+        There are no particularly sensitive writable data nodes.</t>
+       <t> Some of the readable data nodes in this YANG module may be considered sensitive or vulnerable in some
+           network environments. It is thus important to control read access (e.g., via get, get-config, 
+           or notification) to these data nodes. Specifically, the following subtrees and data nodes have
+           particular sensitivities/vulnerabilities:
+           There are no particularly sensitive readable data nodes.</t>
     </section>
   </middle>
   <!--  *****BACK MATTER ***** -->
@@ -1353,6 +1166,7 @@ module ietf-if-flexible-encapsulation {
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7224.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.7950.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8174.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8341.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8343.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8344.xml"/>
 	<xi:include href="https://bib.ietf.org/public/rfc/bibxml6/reference.R.IEEE.802.1Q-2022.xml"/>
@@ -1360,14 +1174,16 @@ module ietf-if-flexible-encapsulation {
       </references>
       <references>
         <name>Informative References</name>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4252.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4448.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4761.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.4762.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6241.xml"/>
-	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.6242.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8040.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8200.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8340.xml"/>
-	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8341.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8446.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9000.xml"/>
       </references>
     </references>
     <section anchor="comparison" numbered="true" toc="default">
@@ -1441,7 +1257,7 @@ module ietf-if-flexible-encapsulation {
         <name>Possible Overlap Between the Two Models</name>
         <t>Both models can be used for configuring similar basic layer 2
             forwarding topologies. The 802.1Q bridge configuration model is
-            optimised for configuring Virtual LANs that span across enterprises
+            optimized for configuring Virtual LANs that span across enterprises
             and data centers.</t>
         <t>The sub-interface model can also be used for configuring
 	    equivalent Virtual LAN networks that span across enterprises and
@@ -1455,7 +1271,7 @@ module ietf-if-flexible-encapsulation {
 	    flexibility as to how traffic can be classified, how features can be
 	    applied to traffic streams, and how the traffic is to be
 	    forwarded.</t>
-        <t>Conversely, the 802.1Q bridge model can also be use to implement
+        <t>Conversely, the 802.1Q bridge model can also be used to implement
 	    L2 services in some scenarios, but only if the forwarding paradigm
 	    being used to implement the service is the native Ethernet
 	    forwarding specified in 802.1Q - other forwarding paradigms such as
