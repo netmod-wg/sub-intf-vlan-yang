@@ -98,7 +98,7 @@
   <middle>
     <section numbered="true" toc="default">
       <name>Introduction</name>
-      <t>This document defines two YANG <xref target="RFC7950" format="default">YANG 1.1 Data Modeling Language</xref> modules that
+      <t>This document defines two YANG 1.1 <xref target="RFC7950" format="default">YANG 1.1 Data Modeling Language</xref> modules that
         augment the encapsulation choice YANG element defined in <xref target="I-D.ietf-netmod-intf-ext-yang" format="default">Interface Extensions YANG</xref>
         and the generic interfaces data model defined in <xref target="RFC8343" format="default"/>.  The two modules provide configuration nodes to
         support classification of Ethernet/VLAN traffic to sub-interfaces, that
@@ -283,6 +283,9 @@ module: ietf-if-vlan-encapsulation
         fields in the 802.1Q tags, or the EtherType of the frame payload.
         Rewrites can also be extended to allow for modification of other fields
         within the layer 2 frame header.</t>
+      <t>In summary, the model provides a binding to defines how services are
+         bound to an interface or sub-interface providing a mechanism to pass
+         traffic to/from interface/sub-interface to a service. </t>
       <t>A short example of configuring 802.1Q VLAN sub-interfaces with L2VPN
         using YANG is provided in <xref target="example2" format="default"/>.</t>
       <t keepWithNext="true">The "ietf-if-flexible-encapsulation" YANG module
