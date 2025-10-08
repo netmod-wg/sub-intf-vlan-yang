@@ -32,7 +32,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" consensus="true" docName="draft-ietf-netmod-sub-intf-vlan-model-16" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" consensus="true" docName="draft-ietf-netmod-sub-intf-vlan-model-17" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
   <!-- xml2rfc v2v3 conversion 3.15.0 -->
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
@@ -43,7 +43,7 @@
     <!-- The abbreviated title is used in the page header - it is only necessary if the 
          full title is longer than 39 characters -->
         <title abbrev="Sub-interface VLAN YANG">Sub-interface VLAN YANG Data Models</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-netmod-sub-intf-vlan-model-16"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-netmod-sub-intf-vlan-model-17"/>
     <!-- add 'role="editor"' below for the editors if appropriate -->
         <!-- Another author who claims to be an editor -->
       <author fullname="Robert Wilton" initials="R.G." role="editor" surname="Wilton">
@@ -275,8 +275,9 @@ module: ietf-if-vlan-encapsulation
       <t>The model also allows a flexible encapsulation and rewrite to be
         configured directly on an Ethernet or LAG interface without configuring
         separate child sub-interfaces.  Ingress frames that do not match the
-        encapsulation are dropped.  Egress frames MUST conform to the
-        encapsulation. </t>
+        encapsulation are dropped and counted against the "in-discard-unknown-encaps"
+        counter specified in <xref target="I-D.ietf-netmod-intf-ext-yang" format="default"/>.
+        Egress frames MUST conform to the encapsulation. </t>
       <t>The final aim for the model design is for it to be cleanly extensible
         to add in additional match and rewrite criteria of the layer 2 header,
         such as matching on the source or destination MAC address, PCP or DEI
@@ -1173,7 +1174,7 @@ module ietf-if-flexible-encapsulation {
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8343.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8344.xml"/>
 	<xi:include href="https://bib.ietf.org/public/rfc/bibxml6/reference.R.IEEE.802.1Q-2022.xml"/>
-	<xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-netmod-intf-ext-yang-16.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-netmod-intf-ext-yang-17.xml"/>
       </references>
       <references>
         <name>Informative References</name>
