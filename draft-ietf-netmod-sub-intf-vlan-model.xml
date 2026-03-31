@@ -1288,7 +1288,12 @@ module ietf-if-flexible-encapsulation {
 	    since they have different deployment scenarios for which they are
 	    optimized.  Devices may choose which of the models (or both) to
 	    implement depending on what functionality the device is being
-	    designed for.</t>
+	    designed for.  If both are implemented on the same device, then
+      they can both be used at the same time, e.g., if they are
+      configured on different physical or LAG interfaces.  It may be
+      possible to use both models on the same interface at the same
+      time, but the resulting expectations and behaviour are beyond
+      the scope of this specification.</t>
       </section>
     </section>
     </back>
