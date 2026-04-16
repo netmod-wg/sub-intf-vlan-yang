@@ -84,7 +84,7 @@
         sub-interfaces based on the fields available in the Ethernet/VLAN frame
         headers. These modules allow configuration of Layer 3 and Layer 2
         sub-interfaces (e.g. L2VPN attachment circuits) that can interoperate
-        with IETF based forwarding protocols; such as IP and L3VPN services; or
+        with IETF based forwarding protocols, such as IP and L3VPN services, or
         L2VPN services like VPWS, VPLS, and EVPN.  The sub-interfaces also
         interoperate with VLAN tagged traffic originating from an IEEE 802.1Q
         compliant bridge.</t>
@@ -267,11 +267,12 @@ module: ietf-if-vlan-encapsulation
         standard tag manipulations that allow for the insertion, removal, or
         rewrite of one or two 802.1Q VLAN tags. The expectation is that
         manipulations are generally implemented in a symmetrical fashion,
-        i.e. if a manipulation is performed on ingress traffic on an interface
-        then the reverse manipulation is always performed on egress traffic out
-        of the same interface. However, the model also allows for asymmetrical
-        rewrites, which may be required to implement some forwarding models
-        (such as E-Tree).</t>
+        i.e., if a particular manipulation is performed on ingress traffic on an
+        interface then the equivalent reverse manipulation is always performed on
+        egress traffic out of the same interface, so that ingress/egress traffic
+        on the same interface is always encapsulated in the same way. However,
+        the model also allows for asymmetrical rewrites, which may be required
+        to implement some forwarding models (such as E-Tree).</t>
       <t>The model also allows a flexible encapsulation and rewrite to be
         configured directly on an Ethernet or LAG interface without configuring
         separate child sub-interfaces.  Ingress frames that do not match the
@@ -618,10 +619,10 @@ module ietf-if-flexible-encapsulation {
       mandatory true;
       description
         "Provides a choice of how the frames may be
-         matched";
+         matched.";
       case default {
         description
-          "Default match";
+          "Default match.";
         leaf default {
           type empty;
           description
@@ -632,7 +633,7 @@ module ietf-if-flexible-encapsulation {
       }
       case untagged {
         description
-          "Match untagged Ethernet frames only";
+          "Match untagged Ethernet frames only.";
         leaf untagged {
           type empty;
           description
@@ -641,23 +642,23 @@ module ietf-if-flexible-encapsulation {
       }
       case dot1q-priority-tagged {
         description
-          "Match 802.1Q priority tagged Ethernet frames only";
+          "Match 802.1Q priority tagged Ethernet frames only.";
         container dot1q-priority-tagged {
           description
-            "802.1Q priority tag match";
+            "802.1Q priority tag match.";
           leaf tag-type {
             type dot1q-types:dot1q-tag-type;
             mandatory true;
             description
               "The 802.1Q tag type of matched priority
-               tagged packets";
+               tagged packets.";
           }
         }
       }
       case dot1q-vlan-tagged {
         container dot1q-vlan-tagged {
           description
-            "Matches VLAN tagged frames";
+            "Matches VLAN tagged frames.";
           container outer-tag {
             must 'tag-type = "dot1q-types:s-vlan" or '
                + 'tag-type = "dot1q-types:c-vlan"' {
@@ -774,11 +775,11 @@ module ietf-if-flexible-encapsulation {
       description
         "802.1Q VLAN tag rewrite.
          Translate operations are expressed as a combination of tag
-         push and pop operations.  E.g., translating the outer tag is
-         expressed as popping a single tag, and pushing a single tag.
-         802.1Q tags that are translated SHOULD preserve the PCP and
-         DEI fields unless if a different QoS behavior has been
-         specified.";
+         push and pop operations.  For example, translating the outer
+         tag is expressed as popping a single tag, and pushing a
+         single tag.  802.1Q tags that are translated SHOULD preserve
+         the PCP and DEI fields unless if a different QoS behavior has
+         been specified.";
       uses dot1q-tag-rewrite;
     }
   }
@@ -851,8 +852,8 @@ module ietf-if-flexible-encapsulation {
                    direction, but the reverse operation is applied to
                    egress traffic.
 
-                   E.g., if a tag is pushed on ingress traffic, then
-                   the reverse operation is a 'pop 1', that is
+                   For example, if a tag is pushed on ingress traffic,
+                   then the reverse operation is a 'pop 1', that is
                    performed on traffic egressing the interface, so
                    a peer device sees a consistent L2 encapsulation
                    for both ingress and egress traffic.";
@@ -1147,7 +1148,7 @@ module ietf-if-flexible-encapsulation {
       <t>There are a number of data nodes defined in these YANG modules that are
         writable/creatable/deletable (i.e. config true, which is the default).
         All writable data nodes are likely to be reasonably sensitive or vulnerable in some network environments.  
-        Write operations (e.g. edit-config) and delete operations to these data
+        Write operations (e.g., edit-config) and delete operations to these data
         nodes without proper protection or authentication can have a negative effect on network operations.
         The following subtrees and data nodes have particular sensitivities/vulnerabilities:  
         There are no particularly sensitive writable data nodes.</t>
