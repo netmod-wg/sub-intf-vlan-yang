@@ -82,10 +82,11 @@
       <t>This document defines YANG modules to add support for classifying
         traffic received on interfaces as Ethernet/VLAN framed packets to
         sub-interfaces based on the fields available in the Ethernet/VLAN frame
-        headers. These modules allow configuration of Layer 3 and Layer 2
-        sub-interfaces (e.g. L2VPN attachment circuits) that can interoperate
+        headers. These modules allow configuration of Layer 3 (L3) and Layer 2 (L2)
+        sub-interfaces (e.g., L2VPN attachment circuits) that can interoperate
         with IETF based forwarding protocols, such as IP and L3VPN services, or
-        L2VPN services like VPWS, VPLS, and EVPN.  The sub-interfaces also
+        L2VPN services like Virtual Private Wire Service (VPWS), Virtual Private LAN
+        Service (VPLS), and EVPN.  The sub-interfaces also
         interoperate with VLAN tagged traffic originating from an IEEE 802.1Q
         compliant bridge.</t>
       <t>The model differs from an IEEE 802.1Q bridge model in that the
@@ -274,14 +275,15 @@ module: ietf-if-vlan-encapsulation
         the model also allows for asymmetrical rewrites, which may be required
         to implement some forwarding models (such as E-Tree).</t>
       <t>The model also allows a flexible encapsulation and rewrite to be
-        configured directly on an Ethernet or LAG interface without configuring
+        configured directly on an Ethernet or Link Aggregation Group (LAG) interface without configuring
         separate child sub-interfaces.  Ingress frames that do not match the
         encapsulation are dropped and counted against the "in-discard-unknown-encaps"
         counter specified in <xref target="I-D.ietf-netmod-intf-ext-yang" format="default"/>.
         Egress frames MUST conform to the encapsulation. </t>
       <t>The final aim for the model design is for it to be cleanly extensible
         to add in additional match and rewrite criteria of the layer 2 header,
-        such as matching on the source or destination MAC address, PCP or DEI
+        such as matching on the source or destination Media Access Control (MAC)
+        address, Priority Code Point (PCP), or Drop Eligibility Indicator (DEI)
         fields in the 802.1Q tags, or the EtherType of the frame payload.
         Rewrites can also be extended to allow for modification of other fields
         within the layer 2 frame header.</t>
@@ -468,7 +470,8 @@ module ietf-if-vlan-encapsulation {
           must 'tag-type = "dot1q-types:s-vlan" or '
              + 'tag-type = "dot1q-types:c-vlan"' {
             error-message
-              "Only C-VLAN and S-VLAN tags can be matched.";
+              "Only Customer VLAN (C-VLAN) and Service VLAN (S-VLAN)
+               tags can be matched.";
             description
               "For IEEE 802.1Q interoperability, only C-VLAN and
                S-VLAN tags are matched.";
@@ -699,10 +702,10 @@ module ietf-if-flexible-encapsulation {
             type empty;
             description
               "If set, indicates that all 802.1Q VLAN tags in the
-               Ethernet frame header must be explicitly matched, i.e.
-               the EtherType following the matched tags must not be a
-               802.1Q tag EtherType.  If unset then extra 802.1Q VLAN
-               tags are allowed.";
+               Ethernet frame header must be explicitly matched,
+               i.e., the EtherType following the matched tags must
+               not be an 802.1Q tag EtherType.  If unset then extra
+               802.1Q VLAN tags are allowed.";
           }
         }
       }
@@ -1142,11 +1145,11 @@ module ietf-if-flexible-encapsulation {
     </section>
     <section anchor="Security" numbered="true" toc="default">
       <name>Security Considerations</name>
-      <t>The "ietf-if-flexible-encapsulation" and "ietf-if-vlan-encapsulation" YANG modules define data models that are designed to be accessed via YANG-based management protocols, such as NETCONF <xref target="RFC6241" format="default"/> and RESTCONF <xref target="RFC8040" format="default"/>. These protocols have to use a secure transport layer (e.g., SSH <xref target="RFC4252" format="default"/>, TLS <xref target="RFC8446" format="default"/>, and QUIC <xref target="RFC9000" format="default"/>) and have to use mutual authentication.</t>
+      <t>The "ietf-if-flexible-encapsulation" and "ietf-if-vlan-encapsulation" YANG modules define data models that are designed to be accessed via YANG-based management protocols, such as Network Configuration Protocol (NETCONF) <xref target="RFC6241" format="default"/> and RESTCONF <xref target="RFC8040" format="default"/>. These protocols have to use a secure transport layer (e.g., Secure Shell (SSH) <xref target="RFC4252" format="default"/>, TLS <xref target="RFC8446" format="default"/>, and QUIC <xref target="RFC9000" format="default"/>) and have to use mutual authentication.</t>
       <t>The Network Configuration Access Control Model (NACM) <xref target="RFC8341" format="default"/> provides the means to restrict access for particular NETCONF or RESTCONF users to a pre-configured subset of all available
         NETCONF or RESTCONF protocol operations and content.</t>
       <t>There are a number of data nodes defined in these YANG modules that are
-        writable/creatable/deletable (i.e. config true, which is the default).
+        writable/creatable/deletable (i.e., config true, which is the default).
         All writable data nodes are likely to be reasonably sensitive or vulnerable in some network environments.  
         Write operations (e.g., edit-config) and delete operations to these data
         nodes without proper protection or authentication can have a negative effect on network operations.
@@ -1216,7 +1219,8 @@ module ietf-if-flexible-encapsulation {
 	      extensible to other arbitrary fields in the frame header.</li>
           <li>Sub-interfaces are just a type of if:interface and hence
 	      support any feature configuration YANG models that can be applied
-	      generally to interfaces. For example, QoS or ACL models that
+	      generally to interfaces. For example, QoS or Access Control List (ACL)
+	      models that
 	      reference if:interface can be applied to the sub-interfaces, or
 	      the sub-interface can be used as an Access Circuit in L2VPN or
 	      L3VPN models that reference if:interface.</li>
@@ -1231,7 +1235,7 @@ module ietf-if-flexible-encapsulation {
 	      layer 2 pseudowires (over MPLS or IP), VPLS instances, EVPN
 	      instance.</li>
           <li>The model is flexible in the scope of the VLAN Identifier
-	      space.  I.e. by default VLAN Ids can be scoped locally to a single
+	      space.  I.e., by default VLAN Ids can be scoped locally to a single
 	      Ethernet-like trunk interface, but the scope is determined by the
 	      forwarding paradigm that is used.</li>
         </ul>
