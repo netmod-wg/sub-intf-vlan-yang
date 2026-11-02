@@ -32,7 +32,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" consensus="true" docName="draft-ietf-netmod-sub-intf-vlan-model-17" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" consensus="true" docName="draft-ietf-netmod-sub-intf-vlan-model-18" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
   <!-- xml2rfc v2v3 conversion 3.15.0 -->
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
@@ -43,7 +43,7 @@
     <!-- The abbreviated title is used in the page header - it is only necessary if the 
          full title is longer than 39 characters -->
         <title abbrev="Sub-interface VLAN YANG">Sub-interface VLAN YANG Data Models</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-netmod-sub-intf-vlan-model-17"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-netmod-sub-intf-vlan-model-18"/>
     <!-- add 'role="editor"' below for the editors if appropriate -->
         <!-- Another author who claims to be an editor -->
       <author fullname="Robert Wilton" initials="R.G." role="editor" surname="Wilton">
@@ -403,7 +403,7 @@ module: ietf-if-flexible-encapsulation
        defined in <xref target="I-D.ietf-netmod-intf-ext-yang" format="default">ietf-if-extensions.yang</xref>.
        It also contains references to <xref target="RFC8343" format="default"/>,
        <xref target="RFC7224" format="default"/>, and <xref target="IEEE_802.1Q_2022" format="default"/>.</t>
-      <sourcecode name="ietf-if-vlan-encapsulation@2026-07-06.yang" type="yang" markers="true"><![CDATA[
+      <sourcecode name="ietf-if-vlan-encapsulation@2026-11-02.yang" type="yang" markers="true"><![CDATA[
 module ietf-if-vlan-encapsulation {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-if-vlan-encapsulation";
@@ -435,7 +435,7 @@ module ietf-if-vlan-encapsulation {
   organization
     "IETF NETMOD (NETCONF Data Modeling Language) Working Group";
   contact
-    "WG Web:   <http://datatracker.ietf.org/wg/netmod/>
+    "WG Web:   <https://datatracker.ietf.org/wg/netmod/>
      WG List:  <mailto:netmod@ietf.org>
 
      Editors:
@@ -466,7 +466,7 @@ module ietf-if-vlan-encapsulation {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-07-06 {
+  revision 2026-11-02 {
     description
       "Initial version of the module";
     reference
@@ -549,7 +549,7 @@ module ietf-if-vlan-encapsulation {
        This YANG module also augments the 'interface' list entry
        defined in <xref target="RFC8343" format="default"/>.  It also contains
        references to <xref target="RFC7224" format="default"/>, and <xref target="IEEE_802.1Q_2022" format="default"/>.</t>
-      <sourcecode name="ietf-if-flexible-encapsulation@2026-04-16.yang" type="yang" markers="true"><![CDATA[
+      <sourcecode name="ietf-if-flexible-encapsulation@2026-11-02.yang" type="yang" markers="true"><![CDATA[
 module ietf-if-flexible-encapsulation {
   yang-version 1.1;
   namespace
@@ -582,7 +582,7 @@ module ietf-if-flexible-encapsulation {
   organization
     "IETF NETMOD (NETCONF Data Modeling Language) Working Group";
   contact
-    "WG Web:   <http://datatracker.ietf.org/wg/netmod/>
+    "WG Web:   <https://datatracker.ietf.org/wg/netmod/>
      WG List:  <mailto:netmod@ietf.org>
 
      Editors:
@@ -613,7 +613,7 @@ module ietf-if-flexible-encapsulation {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-07-06 {
+  revision 2026-11-02 {
     description
       "Initial version of the module";
     reference
@@ -673,7 +673,10 @@ module ietf-if-flexible-encapsulation {
           "Match 802.1Q priority tagged Ethernet frames only.";
         container dot1q-priority-tagged {
           description
-            "802.1Q priority tag match.";
+            "Matches Ethernet frames with exactly one 802.1Q
+             priority tag, with VID 0 and the specified tag type.
+             The EtherType following the matched tag MUST NOT be
+             an 802.1Q tag EtherType.";
           leaf tag-type {
             type dot1q-types:dot1q-tag-type;
             mandatory true;
@@ -855,12 +858,12 @@ module ietf-if-flexible-encapsulation {
              directly on the parent interface, if it is associated
              with a forwarding instance, otherwise they are dropped.
 
-             If a frame could be classified to multiple
-             sub-interfaces then they get classified to the
-             sub-interface with the most specific match.  E.g.,
-             matching two VLAN tags in the frame is more specific
-             than matching the outermost VLAN tag, which is more
-             specific than the catch-all 'default' match.";
+             If a frame could be classified to multiple sub-
+             interfaces then they get classified to the sub-interface
+             with the most specific match. For example, matching two
+             VLAN tags in the frame is more specific than matching
+             the outermost VLAN tag, which is more specific than the
+             catch-all 'default' match.";
           uses flexible-match;
         }
         container rewrite {
@@ -883,6 +886,10 @@ module ietf-if-flexible-encapsulation {
                   "Symmetrical rewrite.  Expressed in the ingress
                    direction, but the reverse operation is
                    applied to egress traffic.
+
+                   A tag can only be popped if its tag type and VLAN
+                   identifier are uniquely determined by the match,
+                   so that the tag can be restored on egress.
 
                    For example, if a tag is pushed on ingress
                    traffic, then the reverse operation is a 'pop 1',
@@ -931,20 +938,20 @@ module ietf-if-flexible-encapsulation {
              ambiguous.
 
              The default encapsulation can only be specified for
-             802.1 VLAN tags that are matched by the encapsulation.
+             802.1Q VLAN tags that are matched by the encapsulation.
              I.e., they cannot be specified for 802.1Q VLAN tags
              that may be present in the frames but are not matched
              by the encapsulation.
              
              If not specified for an encapsulation that matches
-             a range of VLAN Ids, the default is to use the
-             lowest value in the range.
+             a list of VLAN Ids or ranges, the default is to use the
+             lowest matched VLAN identifier.
 
-             For an encapsulation that matches 'any' VLAN Id then
-             no default is set and locally sourced traffic
-             should not be sourced without further indication as to
-             which VLAN tags should be used (e.g., perhaps in reply
-             to a frame received on a particular VLAN).
+             If not specified for an encapsulation that matches
+             'any' VLAN Id, no default is set and locally sourced
+             traffic cannot be sourced without further indication as
+             to which VLAN tags should be used (e.g., perhaps in
+             reply to a frame received on a particular VLAN).
              ";
           container outer-tag {
             must 'tag-type = "dot1q-types:s-vlan" or '
@@ -1191,26 +1198,72 @@ module ietf-if-flexible-encapsulation {
         </ul>
       </section>
     </section>
+    <section anchor="operational-considerations" numbered="true" toc="default">
+      <name>Operational Considerations</name>
+      <t>The modules defined in this document provide a standardized YANG
+        interface for management systems to configure sub-interface VLAN
+        classification and tag rewrites. Implementations map this configuration
+        to their device capabilities and configuration mechanisms, while
+        providing the classification and rewrite behavior specified in this
+        document. The modules do not prescribe the device's CLI syntax or
+        internal implementation. Operators and management systems need to
+        account for the features and configuration combinations supported by
+        each device.</t>
+      <t>Devices may implement the sub-interface based model, the IEEE 802.1Q
+        bridge model, or both, depending on their deployment requirements.
+        If both models are implemented on the same device, they can be used
+        at the same time, for example, on different physical or Link
+        Aggregation Group (LAG) interfaces. It may be possible to use both
+        models on the same interface at the same time, but the resulting
+        expectations and behavior are beyond the scope of this specification.
+        A comparison of the models and their deployment scenarios is provided
+        in <xref target="comparison"/>.</t>
+      <t>The VLAN identifier values that can be explicitly configured in
+        these modules are restricted to the range 1 to 4094, consistent with
+        the imported IEEE 802.1Q types. The flexible encapsulation module's
+        VLAN identifier ranges and "any" VLAN identifier match also cover
+        only this range. Priority-tagged traffic, with a VID field of zero,
+        is covered separately by the "dot1q-priority-tagged" match in the
+        flexible encapsulation module; this match cannot be combined with a
+        VLAN identifier range. The value 4095 is reserved in the IEEE 802.1Q
+        definition of VLAN identifiers <xref target="IEEE_802.1Q_2022"/> and
+        cannot be configured as a VLAN identifier by these modules. Handling
+        received frames containing this reserved VID is outside the scope of
+        this specification.</t>
+    </section>
     <section anchor="Security" numbered="true" toc="default">
       <name>Security Considerations</name>
-      <t>The "ietf-if-flexible-encapsulation" and "ietf-if-vlan-encapsulation" YANG modules define data models that are designed to be accessed via YANG-based management protocols, such as Network Configuration Protocol (NETCONF) <xref target="RFC6241" format="default"/> and RESTCONF <xref target="RFC8040" format="default"/>. These protocols have to use a secure transport layer (e.g., Secure Shell (SSH) <xref target="RFC4252" format="default"/>, TLS <xref target="RFC8446" format="default"/>, and QUIC <xref target="RFC9000" format="default"/>) and have to use mutual authentication.</t>
-      <t>The Network Configuration Access Control Model (NACM) <xref target="RFC8341" format="default"/> provides the means to restrict access for particular NETCONF or RESTCONF users to a pre-configured subset of all available
-        NETCONF or RESTCONF protocol operations and content.</t>
-      <t>There are a number of data nodes defined in these YANG modules that are
-        writable/creatable/deletable (i.e., config true, which is the default).
-        All writable data nodes are likely to be reasonably sensitive or vulnerable in some network environments.  
-        Write operations (e.g., edit-config) and delete operations to these data
-        nodes without proper protection or authentication can have a negative effect on network operations.
-        The following subtrees and data nodes have particular sensitivities/vulnerabilities:  
-        There are no particularly sensitive writable data nodes.</t>
-       <t> Some of the readable data nodes in this YANG module may be considered sensitive or vulnerable in some
-           network environments. It is thus important to control read access (e.g., via get, get-config, 
-           or notification) to these data nodes. Specifically, the following subtrees and data nodes have
-           particular sensitivities/vulnerabilities:</t>
-           <ul spacing="normal">
-             <li>There are no particularly sensitive readable data nodes.</li>
-           </ul>
-        
+      <t>The "ietf-if-flexible-encapsulation" and "ietf-if-vlan-encapsulation"
+        YANG modules define data models that are designed to be accessed via
+        YANG-based management protocols, such as Network Configuration
+        Protocol (NETCONF) <xref target="RFC6241" format="default"/> and
+        RESTCONF <xref target="RFC8040" format="default"/>. These YANG-based
+        management protocols (1) MUST use a secure transport layer (e.g.,
+        Secure Shell (SSH) <xref target="RFC4252" format="default"/>, TLS
+        <xref target="RFC9846" format="default"/>, and QUIC
+        <xref target="RFC9000" format="default"/>) and (2) have to use mutual
+        authentication.</t>
+      <t>The Network Configuration Access Control Model (NACM)
+        <xref target="RFC8341" format="default"/> provides the means to
+        restrict access for particular NETCONF or RESTCONF users to a
+        preconfigured subset of all available NETCONF or RESTCONF protocol
+        operations and content.</t>
+      <t>There are a number of data nodes defined in these YANG modules that
+        are writable/creatable/deletable (i.e., "config true", which is the
+        default). All writable data nodes are likely to be reasonably
+        sensitive or vulnerable in some network environments. Write
+        operations (e.g., edit-config) and delete operations to these data
+        nodes without proper protection or authentication can have a negative
+        effect on network operations. There are no particularly sensitive
+        writable data nodes, e.g., ones that are protected by a
+        "nacm:default-deny-write" or a "nacm:default-deny-all" extensions
+        statement.</t>
+      <t>Some of the readable data nodes in these YANG modules may be
+        considered sensitive or vulnerable in some network environments.
+        It is thus important to control read access (e.g., via get,
+        get-config, or notification) to these data nodes. There are no
+        particularly sensitive readable data nodes, e.g., ones that are
+        protected by a "nacm:default-deny-all" extensions statement.</t>
     </section>
   </middle>
   <!--  *****BACK MATTER ***** -->
@@ -1241,7 +1294,7 @@ module ietf-if-flexible-encapsulation {
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8040.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8200.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8340.xml"/>
-	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8446.xml"/>
+	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9846.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.9000.xml"/>
       </references>
     </references>
@@ -1344,12 +1397,9 @@ module ietf-if-flexible-encapsulation {
 	    since they have different deployment scenarios for which they are
 	    optimized.  Devices may choose which of the models (or both) to
 	    implement depending on what functionality the device is being
-	    designed for.  If both are implemented on the same device, then
-      they can both be used at the same time, e.g., if they are
-      configured on different physical or LAG interfaces.  It may be
-      possible to use both models on the same interface at the same
-      time, but the resulting expectations and behaviour are beyond
-      the scope of this specification.</t>
+	    designed for. Operational considerations for devices that implement
+      both models are described in
+      <xref target="operational-considerations"/>.</t>
       </section>
     </section>
     </back>
