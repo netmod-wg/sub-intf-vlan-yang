@@ -32,7 +32,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" consensus="true" docName="draft-ietf-netmod-sub-intf-vlan-model-18" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="std" consensus="true" docName="draft-ietf-netmod-sub-intf-vlan-model-19" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
   <!-- xml2rfc v2v3 conversion 3.15.0 -->
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
@@ -43,7 +43,7 @@
     <!-- The abbreviated title is used in the page header - it is only necessary if the 
          full title is longer than 39 characters -->
         <title abbrev="Sub-interface VLAN YANG">Sub-interface VLAN YANG Data Models</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-netmod-sub-intf-vlan-model-18"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-netmod-sub-intf-vlan-model-19"/>
     <!-- add 'role="editor"' below for the editors if appropriate -->
         <!-- Another author who claims to be an editor -->
       <author fullname="Robert Wilton" initials="R.G." role="editor" surname="Wilton">
