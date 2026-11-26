@@ -61,7 +61,7 @@ module ietf-if-flexible-encapsulation {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-11-02 {
+  revision 2026-11-14 {
     description
       "Initial version of the module";
     reference
@@ -391,15 +391,18 @@ module ietf-if-flexible-encapsulation {
              that may be present in the frames but are not matched
              by the encapsulation.
              
-             If not specified for an encapsulation that matches
-             a list of VLAN Ids or ranges, the default is to use the
-             lowest matched VLAN identifier.
+             If not explicitly specified, the default VLAN identifier
+             for each matched tag is the lowest identifier in its
+             configured list or ranges.  For a two-tag match, this
+             rule applies independently to each tag.
 
-             If not specified for an encapsulation that matches
-             'any' VLAN Id, no default is set and locally sourced
-             traffic cannot be sourced without further indication as
-             to which VLAN tags should be used (e.g., perhaps in
-             reply to a frame received on a particular VLAN).
+             No default can be inferred for a tag matched as 'any',
+             because the match does not identify which VLAN
+             identifiers are valid for locally sourced traffic.  If
+             either tag lacks a default, locally sourced traffic
+             requires further indication of the VLAN identifier to
+             use (e.g., when replying to a frame received on a
+             particular VLAN).
              ";
           container outer-tag {
             must 'tag-type = "dot1q-types:s-vlan" or '

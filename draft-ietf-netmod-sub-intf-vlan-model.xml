@@ -549,7 +549,7 @@ module ietf-if-vlan-encapsulation {
        This YANG module also augments the 'interface' list entry
        defined in <xref target="RFC8343" format="default"/>.  It also contains
        references to <xref target="RFC7224" format="default"/>, and <xref target="IEEE_802.1Q_2022" format="default"/>.</t>
-      <sourcecode name="ietf-if-flexible-encapsulation@2026-11-02.yang" type="yang" markers="true"><![CDATA[
+      <sourcecode name="ietf-if-flexible-encapsulation@2026-11-14.yang" type="yang" markers="true"><![CDATA[
 module ietf-if-flexible-encapsulation {
   yang-version 1.1;
   namespace
@@ -613,7 +613,7 @@ module ietf-if-flexible-encapsulation {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-11-02 {
+  revision 2026-11-14 {
     description
       "Initial version of the module";
     reference
@@ -943,15 +943,18 @@ module ietf-if-flexible-encapsulation {
              that may be present in the frames but are not matched
              by the encapsulation.
              
-             If not specified for an encapsulation that matches
-             a list of VLAN Ids or ranges, the default is to use the
-             lowest matched VLAN identifier.
+             If not explicitly specified, the default VLAN identifier
+             for each matched tag is the lowest identifier in its
+             configured list or ranges.  For a two-tag match, this
+             rule applies independently to each tag.
 
-             If not specified for an encapsulation that matches
-             'any' VLAN Id, no default is set and locally sourced
-             traffic cannot be sourced without further indication as
-             to which VLAN tags should be used (e.g., perhaps in
-             reply to a frame received on a particular VLAN).
+             No default can be inferred for a tag matched as 'any',
+             because the match does not identify which VLAN
+             identifiers are valid for locally sourced traffic.  If
+             either tag lacks a default, locally sourced traffic
+             requires further indication of the VLAN identifier to
+             use (e.g., when replying to a frame received on a
+             particular VLAN).
              ";
           container outer-tag {
             must 'tag-type = "dot1q-types:s-vlan" or '
@@ -1038,8 +1041,8 @@ module ietf-if-flexible-encapsulation {
           "forwarding": true,
           "address": [
             {
-              "ip": "2001:db8:11::1",
-              "prefix-length": 48
+              "ip": "2001:db8:10:20::1",
+              "prefix-length": 64
             }
           ]
         }
@@ -1062,7 +1065,7 @@ module ietf-if-flexible-encapsulation {
           "address": [
             {
               "ip": "2001:db8:11::1",
-              "prefix-length": 48
+              "prefix-length": 64
             }
           ]
         }
@@ -1079,7 +1082,7 @@ module ietf-if-flexible-encapsulation {
             of 21; and remove the outer tag (S-VLAN 10) before the traffic is
             passed off to the L2VPN service.</t>
         <t>It also illustrates another sub-interface 'eth1.0' under a
-            separate physical interface configured to match traffic with a
+            separate physical interface 'eth1', configured to match traffic with a
             C-VLAN of 50, with the tag removed before traffic is given to any
             service.  Sub-interface 'eth1.0' is not currently bound to any
             service and hence traffic classified to that sub-interface is
@@ -1121,9 +1124,13 @@ module ietf-if-flexible-encapsulation {
         }
       },
       {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd"
+      },
+      {
         "name": "eth1.0",
         "type": "iana-if-type:l2vlan",
-        "ietf-if-extensions:parent-interface": "eth0",
+        "ietf-if-extensions:parent-interface": "eth1",
         "ietf-if-extensions:encapsulation": {
           "ietf-if-flexible-encapsulation:flexible": {
             "match": {
@@ -1161,6 +1168,10 @@ module ietf-if-flexible-encapsulation {
         John Messenger, Glenn Parsons, Ludwig Pauwels, Dave Thaler,
         Joseph White, Vladimir Vassilev, David Ball and members of the
 	      IEEE 802.1 WG for their helpful reviews and feedback on this draft.</t>
+      <t>The authors would like to thank Mahesh Jethanandani for his
+        Area Director review.</t>
+      <t>Some of the prose in this document was created using OpenAI ChatGPT
+        and was reviewed and edited by the authors.</t>
     </section>
     <section anchor="IANA" numbered="true" toc="default">
       <name>IANA Considerations</name>
@@ -1282,7 +1293,7 @@ module ietf-if-flexible-encapsulation {
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8343.xml"/>
 	<xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8344.xml"/>
 	<xi:include href="https://bib.ietf.org/public/rfc/bibxml6/reference.R.IEEE.802.1Q-2022.xml"/>
-	<xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-netmod-intf-ext-yang-17.xml"/>
+	<xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-netmod-intf-ext-yang-19.xml"/>
       </references>
       <references>
         <name>Informative References</name>
